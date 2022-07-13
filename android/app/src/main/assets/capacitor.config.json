@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "MarketDash",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><strong>Comprar Producto</strong></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text = "" defaultHref="#"></ion-back-button> 
+    </ion-buttons>
+  </ion-toolbar>
+  
+  
+</ion-header>
+
+<ion-content>
+
+  <!--SCANEAR CON DIOS-->
+    <center>
+    <img src="assets/carrito1.png" height="200" width="200"/>
+    <ion-button fill="outline" (click)="scan()">Escanear codigo de Producto
+  </ion-button></center>
+  {{code}}
+</ion-content>

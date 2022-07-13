@@ -1,0 +1,7 @@
+{
+  "name": "MarketDash",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
