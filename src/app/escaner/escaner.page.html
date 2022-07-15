@@ -11,10 +11,61 @@
 
 <ion-content>
 
+  <ion-fab vertical = "top" horizontal ="end" slot="fixed">
+    <ion-fab-button (click) = "openCart()" #cart>
+      <div class = "cart-length">{{cartItemCount | async}}</div>
+      <ion-icon name = "cart" class = "cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <!--SCANEAR CON DIOS-->
+  <br>
+  <br>
     <center>
-    <img src="assets/carrito1.png" height="200" width="200"/>
+    <img src="assets/carrito1.png" height="250" width="250"/>
     <ion-button fill="outline" (click)="scan()">Escanear codigo de Producto
   </ion-button></center>
-  {{code}}
+ 
+    
+     <ion-list *ngFor = "let p of products">
+    <ion-item>
+      <ion-card>
+      <ion-card-header>
+        <img [src]=item.imgURL height="200" width="500"/>
+      <ion-card-title><h1 class="ion-text-center">{{p.name}}</h1></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>
+        <center><h2><strong>{{p.price | currency: 'USD'}}</strong></h2></center>
+      </ion-label>
+    </ion-card-content>
+    <ion-item>
+      <ion-button  slot="end"  (click) = "addToCart(p)">Agregar</ion-button>
+    </ion-item>
+      </ion-card>
+   
+  </ion-item>
+  </ion-list>
+
+      
+
+
+     <!--<ion-list *ngFor = "let item of code">
+      <ion-item>
+        <ion-card>
+        <ion-card-header>
+          <img [src]=item.imgURL height="200" width="500"/>
+    
+        <ion-card-title><h1 class="ion-text-center">{{item.name}}</h1></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{item.description}}
+      </ion-card-content>
+      <ion-item>
+        <ion-button  slot="end" href="escaner">Agregar</ion-button>
+      </ion-item>
+        </ion-card>
+    </ion-item>
+    </ion-list>-->
+
 </ion-content>

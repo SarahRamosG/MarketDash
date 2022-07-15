@@ -7,66 +7,50 @@ import { ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS } from '@angular/platform-browser
   styleUrls: ['./supermercados.page.scss'],
 })
 export class SupermercadosPage implements OnInit {
-  
-
-  
-  /*
- name_supermercado = {
-  supermarkert:{
-    name:String;
-  },
-
-  supermarkert1:{
-    name:'Bravo',
-  },
-
-  supermarkert2:{
-    name:'Jumbo',
-  },
-
-  supermarkert3:{
-    name:'Ole',
-  },
-
- };
-/*
-   this.name_supermercado = [
- 'Ole',
-  'La Sirena',
-  'Bravo',
- 'Jumbo',
-    ]
- */
-
- //data = Object.values(this.name_supermercado);
-   name_supermercado: string [];
+  public superMarkets: any [];
   searchsupermarker: any;
 
-  constructor() { 
+  constructor() {
     this.inicializar();
   }
-  
+
 
   inicializar(){
-    this.name_supermercado = [
-      'Ole',
-       'La Sirena',
-       'Bravo',
-      'Jumbo',
-    ]
+    this.superMarkets = [
+      {
+        name: 'Jumbo',
+        description: `Somos un hipermercado perteneciente a Centro Cuesta Nacional, diseñado para satisfacer las necesidades, preferencias y gusto de nuestros clientes.`,
+        imgURL:'assets/Jumbo.jpg'
+      },
+      {
+        name: 'La Sirena',
+        description: `Nos apasiona entender las necesidades del cliente y ofrecerle soluciones con amabilidad y respeto.`,
+        imgURL:'assets/sirena.jpg'
+      },
+      {
+        name: 'Olé',
+        description: `Trabajamos 24 horas para ofercerte frutas y vegetales con menos de 8 horas de cosechados.
+        Por esto somos los expertos.`,
+        imgURL:'assets/ole.jpg'
+      },
+      {
+      
+        name: 'Bravo',
+        description: `Expertos en vender barato, estamos comprometidos contigo, entregandote los mejores productos a la mas alta calidad.`,
+        imgURL:'assets/bravo.png'
+      }
+    ];
   }
 
    //Metodo de buscar
-   buscar(ev:any){
+   buscar(ev: any){
 
     this.inicializar();
 
     const val = ev.target.value;
 
     if (val && val.trim()!==''){
-      this.name_supermercado = this.name_supermercado.filter ((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase())> - 1);
-      });
+      this.superMarkets = this.superMarkets.filter ((item) => (item.name.toLowerCase().indexOf(val.toLowerCase())> - 1));
     }
   }
 
@@ -74,6 +58,5 @@ export class SupermercadosPage implements OnInit {
   }
 
 }
- 
 
 

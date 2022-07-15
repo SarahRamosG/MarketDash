@@ -12,19 +12,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor = "let item of name_supermercado">
-    {{item}}
+  <ion-list *ngFor = "let item of superMarkets">
     <ion-item>
       <ion-card>
       <ion-card-header>
-    {{item.supermarkert1}}
-        <img src="assets/bravo.png" height="200" width="500"/>
+        <img [src]=item.imgURL height="200" width="500"/>
   
-      <center> <ion-card-title><h1>Bravo</h1></ion-card-title></center>
+      <ion-card-title><h1 class="ion-text-center">{{item.name}}</h1></ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Trabajamos 24 horas para ofercerte frutas y vegetales con menos de 8 horas de cosechados.
-      Por esto somos los expertos.
+      {{item.description}}
     </ion-card-content>
     <ion-item>
       <ion-button fill="outline" slot="end" href="escaner">Realizar compra</ion-button>
