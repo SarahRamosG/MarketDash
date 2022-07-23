@@ -6,7 +6,8 @@ export interface Products{
   name: string;
   price: number;
   amount: number;
-  barcode: number;
+  barcode: string;
+  imgURL: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export interface Products{
 export class CartService {
 
   data: Products[] = [
-    {id:1, name:'Rexona', price: 100, amount: 1, barcode: 75062798},
+    {id:1, name:'Rexona', price: 100, amount: 1, barcode: '75062798', imgURL:'assets/rexona.png'},
+
   ];
 
   private cart = [];

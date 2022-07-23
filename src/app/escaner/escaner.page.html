@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title><strong>Comprar Producto</strong></ion-title>
     <ion-buttons slot="start">
-      <ion-back-button text = "" defaultHref="#"></ion-back-button> 
+      <ion-back-button text = "" defaultHref="supermercados"></ion-back-button> 
     </ion-buttons>
   </ion-toolbar>
   
@@ -27,8 +27,8 @@
       </ion-button>
     </div>
  
-    
-    <div *ngIf="!itemWasScaned">
+
+    <div *ngIf="itemWasScaned">
     <ion-item *ngFor="let item of products">
       <ion-card>
       <ion-card-header>
@@ -47,25 +47,5 @@
   </ion-item>
 </div>
 
-      
-
-
-     <!--<ion-list *ngFor = "let item of code">
-      <ion-item>
-        <ion-card>
-        <ion-card-header>
-          <img [src]=item.imgURL height="200" width="500"/>
-    
-        <ion-card-title><h1 class="ion-text-center">{{item.name}}</h1></ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{item.description}}
-      </ion-card-content>
-      <ion-item>
-        <ion-button  slot="end" href="escaner">Agregar</ion-button>
-      </ion-item>
-        </ion-card>
-    </ion-item>
-    </ion-list>-->
 
 </ion-content>

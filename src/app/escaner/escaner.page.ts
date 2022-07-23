@@ -71,25 +71,12 @@ export class EscanerPage implements OnInit {
 
   }
 
-  /*FILTRO
-  buscar(ev: any){
-
-    this.inicializar();
-
-    const val = ev.target.value;
-
-    if (val && val.trim()!==''){
-      this.products = this.products.filter ((item) => (item.name.toLowerCase().indexOf(val.toLowerCase())> - 1));
-    }
-  }
-  */
-
   //SCANER
      scan(){
       this.barcodeScanner.scan().then(barcodeData =>{
-        this.products = this.products.filter(products => products.barcode === barcodeData.text);
+        this.products = this.products.filter(products => products.barcode == String(barcodeData.text));
         //Operador ternario
-        this.itemWasScaned =  this.products.length ? true : false;
+        this.itemWasScaned = this.products.length ? true : false;
         console.log('Producto', this.products);
       }).catch(err=>{
         console.log('Error',err);
