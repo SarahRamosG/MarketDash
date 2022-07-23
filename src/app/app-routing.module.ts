@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'bienvenido',
     pathMatch: 'full'
   },
   {
@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'carrito',
     loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
+  },
+  {
+    path: 'bienvenido',
+    loadChildren: () => import('./bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)
   }
   
 ];

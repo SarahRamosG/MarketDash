@@ -1,9 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button text = "" defaultHref="#"></ion-back-button> 
+    </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <div class="title">
+    <h4>Ingresar</h4>
+    <p>Ha iniciado sesión</p>
+   </div>
+  <form [formGroup]="formularioLogin">
+    <ion-item>
+      <ion-input placeholder="Usuario" class="primary-input"formControlName="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="Contraseña"  type="password" class="primary-input"formControlName="contrasena"></ion-input>
+    </ion-item>
+  </form>
+
+  <div class="ion-margin-top ion-text-right forget">
+    <a>Recordar contraseña?</a>
+   </div>
+
+   <div class="ion-margin-top">
+    <ion-button expand="block" (click)="ingresar()">Iniciar sesión</ion-button>
+   </div>
+ 
+   <div class="ion-margin-top ion-text-center">
+    <a [routerLink]="['/bienvenido']">Cerrar</a>
+   </div>
 
 </ion-content>

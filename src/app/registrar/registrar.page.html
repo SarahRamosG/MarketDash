@@ -1,12 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>registrar</ion-title>
+  <ion-toolbar >
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="#"></ion-back-button>
+      <ion-back-button text = "" defaultHref="#"></ion-back-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content class="ion-padding">
+  <div class ="title">
+    <h4>Registro</h4>
+    <p>Colaborar con las informaciones pedidas</p>
+  </div>
+
+  <form [formGroup]="formularioRegistro">
+  <ion-item>
+  <ion-input placeholder="Nombre completo" class="primary-input" formControlName="nombrecompleto"></ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-input placeholder="usuario" class="primary-input"formControlName="nombre" formControlName="nombre"></ion-input>
+  </ion-item>
+
+ <ion-item>
+  <ion-input placeholder="Contraseña" type="password" class="primary-input" formControlName="contrasena"></ion-input>
+  </ion-item>
+
+<ion-item>
+<ion-input placeholder="Confirmar Contraseña" type="password" class="primary-input" formControlName="confirmacioncontrasena"></ion-input>
+</ion-item>
+  </form>
+  <p> Esta de acuerdo con los terminos y condiciones.</p>
+
+  <div class="ion-margin-top">
+    <ion-button expand="block" (click)="guardar()">Guardar</ion-button>
+  </div>
+
+  <div class="ion-margin-top ion-text-center">
+    <a [routerLink]="['/login']">Cerrar</a>
+
+  </div>
 </ion-content>
