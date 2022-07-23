@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface products{
-  id:number;
+export interface Products{
+  id: number;
   name: string;
   price: number;
   amount: number;
@@ -13,9 +13,8 @@ export interface products{
 })
 export class CartService {
 
-  data: products[] = [
+  data: Products[] = [
     {id:1, name:'Rexona', price: 100, amount: 1, barcode: 75062798},
-  
   ];
 
   private cart = [];
@@ -23,7 +22,7 @@ export class CartService {
 
 
   constructor() { }
-  
+
     getProducts(){
       return this.data;
     }
@@ -32,13 +31,13 @@ export class CartService {
       return this.cart;
     }
 
-   getCartItemCount (){
+   getCartItemCount(){
     return this.cartItemCount;
    }
 
    addProduct(product){
     let added = false;
-    for (let p of this.cart){
+    for (const p of this.cart){
       if (p.id === product.id){
         p.amount+=1;
         added = true;
@@ -52,10 +51,10 @@ export class CartService {
    }
 
    decreaseProduct(product){
-   for (let[index, p] of this.cart.entries()){
+   for (const[index, p] of this.cart.entries()){
     if (p.id === product.id){
        p.amount-=1;
-      if (p.amount == 0){
+      if (p.amount === 0){
       this.cart.splice(index, 1);
     }
   }
@@ -65,7 +64,7 @@ export class CartService {
    }
 
    removeProduct(product){
-    for (let [index, p] of this.cart.entries()){
+    for (const [index, p] of this.cart.entries()){
       if (p.id === product.id){
         this.cartItemCount.next(this.cartItemCount.value - p.amount);
         this.cart.splice(index, 1);

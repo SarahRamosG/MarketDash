@@ -17,23 +17,22 @@ export class EscanerPage implements OnInit {
    code: any;
    //carrito
    cart = [];
-   products =[];
-   cartItemCount : BehaviorSubject<number>;
+   products = [];
+   cartItemCount: BehaviorSubject<number>;
+   itemWasScaned = false;
 
-
-  constructor(private barcodeScanner: BarcodeScanner, private cartService:CartService, private modaCtrl: ModalController) { 
+  constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController) {
     this.inicializar();
   }
 
- 
-
   inicializar(){
-   data : this.products = [
+   this.products = [
       {
         name: 'Rexona',
         description: `100`,
         imgURL:'assets/rexona.png',
-        barcode :'75062798'
+        barcode :'75062798',
+        quantity: 12
       },
       {
         name: 'VapoRub',
@@ -49,7 +48,6 @@ export class EscanerPage implements OnInit {
     ];
   }
 
- 
 //carrito
   ngOnInit() {
     this.products = this.cartService.getProducts ();
@@ -64,7 +62,7 @@ export class EscanerPage implements OnInit {
 
   async openCart(){
 
-    let modal = await this.modaCtrl.create({
+    const modal = await this.modaCtrl.create({
       component : CarritoPage,
       cssClass: 'carrito'
     });
@@ -89,21 +87,15 @@ export class EscanerPage implements OnInit {
   //SCANER
      scan(){
       this.barcodeScanner.scan().then(barcodeData =>{
-        this.code  = this.products.filter(products => products.barcode === barcodeData.text)
-        console.log('Barcode data', this.code);
+        this.products = this.products.filter(products => products.barcode === barcodeData.text);
+        //Operador ternario
+        this.itemWasScaned =  this.products.length ? true : false;
+        console.log('Producto', this.products);
       }).catch(err=>{
         console.log('Error',err);
       });
 
       }
 
-    
-
-     
-
       }
-      
-     
-   
-     
 

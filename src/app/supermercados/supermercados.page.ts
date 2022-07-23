@@ -19,6 +19,7 @@ export class SupermercadosPage implements OnInit {
     this.superMarkets = [
       {
         name: 'Jumbo',
+        // eslint-disable-next-line max-len
         description: `Somos un hipermercado perteneciente a Centro Cuesta Nacional, diseñado para satisfacer las necesidades, preferencias y gusto de nuestros clientes.`,
         imgURL:'assets/Jumbo.jpg'
       },
@@ -34,7 +35,7 @@ export class SupermercadosPage implements OnInit {
         imgURL:'assets/ole.jpg'
       },
       {
-      
+
         name: 'Bravo',
         description: `Expertos en vender barato, estamos comprometidos contigo, entregandote los mejores productos a la mas alta calidad.`,
         imgURL:'assets/bravo.png'

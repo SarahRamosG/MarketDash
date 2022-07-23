@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { CartService, products } from '../services/cart.service';
+import { CartService, Products } from '../services/cart.service';
 
 @Component({
   selector: 'app-carrito',
@@ -9,9 +9,9 @@ import { CartService, products } from '../services/cart.service';
 })
 export class CarritoPage implements OnInit {
 
-  cart : products [] = [];
+  cart: Products [] = [];
 
-  constructor(private cartServices :CartService, private modalCtrl:ModalController) { }
+  constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
 
@@ -40,7 +40,7 @@ export class CarritoPage implements OnInit {
   }
 
   checkout(){
-    
+
   }
 
 }
