@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
     //compara que los datos de registrar sean los mismos que se ingresen en los campos de login
     if (usuario.nombre == f.nombre && usuario.contrasena== f.contrasena){
       //dirigirse a la pantalla del menu
-      this.router.navigate(['./folder/folder']);
+      this.router.navigate(['./supermercados']);
 
     }else{
       const alert = await this.alertController.create({

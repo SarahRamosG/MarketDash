@@ -1,8 +1,7 @@
 <ion-header>
   <ion-toolbar >
-    <ion-title><strong> Supermercados</strong></ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button text = "" defaultHref="folder/folder"></ion-back-button> 
+    <ion-title class ="ion-padding ion-text-center"><strong> Supermercados</strong></ion-title>
+    <ion-buttons slot="start"> 
     </ion-buttons>
   </ion-toolbar>
  <ion-toolbar>
@@ -12,7 +11,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor = "let item of superMarkets">
+
+ <div class="card">
+    <ion-list *ngFor = "let item of superMarkets" >
     <ion-item>
       <ion-card>
       <ion-card-header>
@@ -20,7 +21,7 @@
   
       <ion-card-title><h1 class="ion-text-center">{{item.name}}</h1></ion-card-title>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class ="ion-padding ion-text-center">
       {{item.description}}
     </ion-card-content>
     <ion-item>
@@ -30,4 +31,27 @@
    
   </ion-item>
   </ion-list>
+</div>
+
+  <div class="ion-padding">
+    <ion-tabs>
+      <!-- Tab bar -->
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="clientes">
+          <ion-icon name="people-outline" [routerLink]="['/clientes']"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="pagos">
+          <ion-icon name="card-outline" [routerLink]="['/pagos']"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="supermercados">
+          <ion-icon name="cart-outline"  [routerLink]="['/supermercados']"></ion-icon>
+        </ion-tab-button>
+        <ion-tab-button tab="bienvenidos">
+          <ion-icon name="log-out-outline"  [routerLink]="['/bienvenido']"></ion-icon>
+        </ion-tab-button>
+  
+      </ion-tab-bar>
+    </ion-tabs>
+  </div>
+
 </ion-content>

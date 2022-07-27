@@ -1,12 +1,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-title><strong>Clientes</strong></ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button text = "" defaultHref="#"></ion-back-button> 
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="clientes">
+        <ion-icon name="people-outline" [routerLink]="['/pagos']"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="pagos">
+        <ion-icon name="card-outline" [routerLink]="['/pagos']"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="supermercados">
+        <ion-icon name="cart-outline"  [routerLink]="['/supermercados']"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="bienvenidos">
+        <ion-icon name="log-out-outline"  [routerLink]="['/bienvenido']"></ion-icon>
+      </ion-tab-button>
 
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

@@ -19,26 +19,26 @@ export class SupermercadosPage implements OnInit {
     this.superMarkets = [
       {
         name: 'Jumbo',
-        // eslint-disable-next-line max-len
         description: `Somos un hipermercado perteneciente a Centro Cuesta Nacional, diseñado para satisfacer las necesidades, preferencias y gusto de nuestros clientes.`,
         imgURL:'assets/Jumbo.jpg'
+      },
+      {
+        name: 'Nacional',
+        description: 'Expertos en vender barato, estamos comprometidos contigo, entregandote los mejores productos a la mas alta calidad.',
+        imgURL:'assets/nacional.jpg'
+       
+      },
+      {
+        name: 'Bravo',
+        description: `Trabajamos 24 horas para ofercerte frutas y vegetales con menos de 8 horas de cosechados.
+        Por esto somos los expertos.`,
+        imgURL:'assets/bravo.png'
       },
       {
         name: 'La Sirena',
         description: `Nos apasiona entender las necesidades del cliente y ofrecerle soluciones con amabilidad y respeto.`,
         imgURL:'assets/sirena.jpg'
-      },
-      {
-        name: 'Olé',
-        description: `Trabajamos 24 horas para ofercerte frutas y vegetales con menos de 8 horas de cosechados.
-        Por esto somos los expertos.`,
-        imgURL:'assets/ole.jpg'
-      },
-      {
-
-        name: 'Bravo',
-        description: `Expertos en vender barato, estamos comprometidos contigo, entregandote los mejores productos a la mas alta calidad.`,
-        imgURL:'assets/bravo.png'
+       
       }
     ];
   }

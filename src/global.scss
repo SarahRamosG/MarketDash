@@ -40,36 +40,6 @@
     --ion-color-tint: var(--ion-color-white-tint);
 }
 
-.login-modal .modal-wrapper{
-    
-        height: 74vh;
-        top:100%;
-        max-width:500px;
-        background:#fff;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        position: fixed;
-        margin: auto;
-        border-top-left-radius:46px;
-        border-top-right-radius: 46px;
-        display:block;
-       
-    }
-
-
-.registrar-modal .modal-wrapper{
-    
-    --height: 50%;
-        top: 50%;
-        position: absolute;
-        display:block;
-    --border-radius: 20px 20px 0 0;
-       
-    }
-
-  
-
 
 
 .primary-input{

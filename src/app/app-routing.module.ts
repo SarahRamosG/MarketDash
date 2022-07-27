@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'supermercados',
+    path:'supermercados',
     loadChildren: () => import('./supermercados/supermercados.module').then( m => m.SupermercadosPageModule)
   },
   {

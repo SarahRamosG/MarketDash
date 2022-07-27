@@ -118,20 +118,6 @@ ion-item.selected {
   --color: var(--ion-color-primary);
 }
 
-.menu-header-bg {
-     height: 180px;
-     width: 350px;
-     background: #1190CB;
-     background: linear-gradient (90deg, #549ce0 0%,  #1190CB 100%);
-     background: linear-gradient rgba (98, 140, 255, 0.5);
-     transform: rotate(-15deg);
-     border-radius: 10px 10px 10px 50px;
-     margin-left: -25px;
-     margin-top: -70px;
-     margin-bottom: 70px;
-
-}
-
 .header-content {
  position:absolute;
  top: 30px;

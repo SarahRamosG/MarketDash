@@ -20,8 +20,32 @@
 
 ion-back-button{
     color : #1190CB;
+
 }
 
+ion-button{
+    --border-radius: 1.2rem;
+}
+
+ion-content{
+    --background: linear-gradient(0deg,rgba(0,0,0,0.7), rgba(0,0,0,0.1)),
+    url("/assets/fondo1.jpg") no-repeat center center / cover;
+}
+
+.login-section{
+    height:74vh;
+    width:100%;
+    max-width: 500px;
+    background:#fff;
+    right:0;
+    left:0;
+    bottom:0;
+    position: fixed;
+    margin: auto;
+    border-top-left-radius:46px;
+    border-top-right-radius: 46px;
+
+}
 
 
 

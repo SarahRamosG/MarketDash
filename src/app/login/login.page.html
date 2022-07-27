@@ -1,37 +1,34 @@
-<ion-header>
-  <ion-toolbar >
-    <ion-buttons slot="start">
-      <ion-back-button text = "" defaultHref="bienvenido"></ion-back-button> 
-    </ion-buttons>
-  </ion-toolbar>
+
+<ion-content  class="ion-padding">
+  <div class="login-section ion-padding">
+  <br>
+  <br>
+  <div class="heading ion-padding">
+    <div class="title">
+      <h4>Ingresar</h4>
+      <p>Ha iniciado sesión</p>
+     </div>
+    <form [formGroup]="formularioLogin">
+      <ion-item>
+        <ion-input placeholder="Usuario" class="primary-input"formControlName="nombre"></ion-input>
+      </ion-item>
   
-</ion-header>
-
-<ion-content class="ion-padding">
-  <div class="title">
-    <h4>Ingresar</h4>
-    <p>Ha iniciado sesión</p>
-   </div>
-  <form [formGroup]="formularioLogin">
-    <ion-item>
-      <ion-input placeholder="Usuario" class="primary-input"formControlName="nombre"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input placeholder="Contraseña"  type="password" class="primary-input"formControlName="contrasena"></ion-input>
-    </ion-item>
-  </form>
-
-  <div class="ion-margin-top ion-text-right forget">
-    <a>Recordar contraseña?</a>
-   </div>
-
-   <div class="ion-margin-top">
-    <ion-button expand="block" (click)="ingresar()">Iniciar sesión</ion-button>
-   </div>
- 
-   <div class="ion-margin-top ion-text-center">
-    <a [routerLink]="['/bienvenido']">Cerrar</a>
-   </div>
-
+      <ion-item>
+        <ion-input placeholder="Contraseña"  type="password" class="primary-input"formControlName="contrasena"></ion-input>
+      </ion-item>
+    </form>
+  
+    <div class="ion-margin-top ion-text-right forget">
+      <a>Recordar contraseña?</a>
+     </div>
+  
+     <div class="ion-margin-top">
+      <ion-button expand="block" (click)="ingresar()">Iniciar sesión</ion-button>
+     </div>
+   
+     <div class="ion-margin-top ion-text-center">
+      <a [routerLink]="['/bienvenido']">Cerrar</a>
+     </div>
+  </div>
+  </div>
 </ion-content>
