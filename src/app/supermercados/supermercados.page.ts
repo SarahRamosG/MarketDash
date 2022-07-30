@@ -29,9 +29,9 @@ export class SupermercadosPage implements OnInit {
 
     const val = ev.target.value;
 
-    if (val && val.trim()!==''){
-      this.superMarkets = this.superMarkets.filter ((item) => (item.name.toLowerCase().indexOf(val.toLowerCase())> - 1));
-    }
+   /*if (val && val.trim()!==''){
+     // this.superMarkets = this.superMarkets.filter ((item) => (item.name.toLowerCase().indexOf(val.toLowerCase())> - 1));
+    }*/
   }
 
   ngOnInit() {
@@ -39,4 +39,4 @@ export class SupermercadosPage implements OnInit {
 
 }
 
-
+   

@@ -11,13 +11,13 @@ import { CarritoPageModule } from './carrito/carrito.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,CarritoPageModule, 
+  imports: [BrowserModule,AngularFireAuthModule, IonicModule.forRoot(), AppRoutingModule,CarritoPageModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),AngularFirestoreModule,],
   providers: [BarcodeScanner,{provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

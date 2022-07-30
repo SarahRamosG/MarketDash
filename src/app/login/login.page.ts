@@ -8,6 +8,10 @@ import {
  } from '@angular/forms';
 import { FolderPage } from '../folder/folder.page';
 import {Router} from '@angular/router';
+import { clientes } from '../models/interfaces';
+import { BasedatosService } from '../services/basedatos.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -18,19 +22,25 @@ import {Router} from '@angular/router';
 export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
-
+  user = {
+    email:'',
+    password:'',
+  }
 
 
   constructor(
     public fb: FormBuilder, 
+    public database: BasedatosService,
     public alertController: AlertController,
     public modalCtrl:ModalController,
     public ToastController: ToastController,
+    private FireStore: AngularFirestore,
+    private FireAuth:AngularFireAuth,
     private router: Router
   ) { 
          this.formularioLogin = this.fb.group({
-          'nombre': new FormControl ("", Validators.required),
-           'contrasena': new FormControl ("", Validators.required),   
+          email: ["",[Validators.required]],
+          contrasena: ["",[Validators.required]],  
              });
   
   }
@@ -42,7 +52,17 @@ export class LoginPage implements OnInit {
 
 
   async ingresar(){
-    var f = this.formularioLogin.value;
+    this.database.login(this.user.email,this.user.password).then (res=>{
+      console.log(res);
+      const alert = await this.alertController.create({
+        message:'Los datos que ingreso son incorrectos.',
+        buttons:['Aceptar']
+      });
+      
+      
+    })
+
+    /*var f = this.formularioLogin.value;
    
     var usuario = JSON.parse(localStorage.getItem('usuario'));
 
@@ -60,5 +80,7 @@ export class LoginPage implements OnInit {
       return;
     }
   }
+  */
+}
 
 }

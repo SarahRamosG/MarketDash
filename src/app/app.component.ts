@@ -10,7 +10,7 @@ export class AppComponent {
     { title: 'Clientes', url: 'clientes', icon: 'person' },
     { title: 'Supermercados', url: 'supermercados', icon: 'cart' },
     { title: 'Pagos', url: 'pagos', icon: 'card' },
-    { title: 'Salir', url: 'salir', icon: 'log-out' },
+    { title: 'Salir', url: 'bienvenido', icon: 'log-out' },
   ];
  
   constructor() {}

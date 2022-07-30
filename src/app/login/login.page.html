@@ -10,11 +10,11 @@
      </div>
     <form [formGroup]="formularioLogin">
       <ion-item>
-        <ion-input placeholder="Usuario" class="primary-input"formControlName="nombre"></ion-input>
-      </ion-item>
+        <ion-input  placeholder="email" class="primary-input" formControlName="email"></ion-input>
+        </ion-item>
   
       <ion-item>
-        <ion-input placeholder="Contraseña"  type="password" class="primary-input"formControlName="contrasena"></ion-input>
+        <ion-input placeholder="Contraseña"  type="password" class="primary-input"formControlName="contrasena" minlenght = "5"></ion-input>
       </ion-item>
     </form>
   

@@ -3,6 +3,7 @@ import {AngularFirestore,
 AngularFirestoreDocument,
 AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { clientes } from '../models/interfaces';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { clientes } from '../models/interfaces';
 export class BasedatosService {
 
 
-  constructor( public FireStore: AngularFirestore) { }
+  constructor( public FireStore: AngularFirestore, private FireAuth:AngularFireAuth,) { }
 
   //ingresar informacion a la base de datos.
   crearDocument(data : clientes,enlace:string){
@@ -41,4 +42,9 @@ export class BasedatosService {
   createId(){
    return  this.FireStore.createId();
   }
-}
+
+  login(email:string, password:string){
+   return this.FireAuth.signInWithEmailAndPassword(email,password);
+    }
+  }
+

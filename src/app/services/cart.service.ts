@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { producto } from '../models/interfaces';
+import { BasedatosService } from '../services/basedatos.service';
 
 export interface Products{
   id: number;
@@ -9,10 +11,13 @@ export interface Products{
   barcode: string;
   imgURL: string;
 }
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+   public superMarkets:any []= [];
 
   data: Products[] = [
     {id:1, name:'Rexona', price: 100, amount: 1, barcode: '75062798', imgURL:'assets/rexona.png'},
