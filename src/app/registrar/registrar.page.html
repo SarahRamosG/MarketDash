@@ -7,23 +7,42 @@
     <p>Colaborar con las informaciones pedidas</p>
   </div>
 
-  <form [formGroup]="formularioRegistro">
+  <!--<form [formGroup]="formularioRegistro">
   <ion-item>
-  <ion-input placeholder="Nombre completo" class="primary-input" formControlName="nombrecompleto"></ion-input>
+  <ion-input [(ngModel)]="clientes.nombre" placeholder="Usuario" class="primary-input" formControlName="nombre"></ion-input>
   </ion-item>
 
   <ion-item>
-  <ion-input placeholder="usuario" class="primary-input"formControlName="nombre" formControlName="nombre"></ion-input>
-  </ion-item>
+    <ion-input [(ngModel)]="clientes.email" placeholder="email" class="primary-input"formControlName="email" formControlName="email"></ion-input>
+    </ion-item>
 
  <ion-item>
-  <ion-input placeholder="Contraseña" type="password" class="primary-input" formControlName="contrasena"></ion-input>
+  <ion-input [(ngModel)]="clientes.contrasena" placeholder="Contraseña" type="password" class="primary-input" formControlName="contrasena"></ion-input>
   </ion-item>
 
 <ion-item>
-<ion-input placeholder="Confirmar Contraseña" type="password" class="primary-input" formControlName="confirmacioncontrasena"></ion-input>
+<ion-input [(ngModel)]="clientes.confirmacioncontrasena" placeholder="Confirmar Contraseña" type="password" class="primary-input" formControlName="confirmacioncontrasena"></ion-input>
+</ion-item>
+  </form>-->
+
+   <form [formGroup]="formularioRegistro">
+  <ion-item>
+  <ion-input [(ngModel)]="newclientes.nombre" placeholder="Usuario" class="primary-input" formControlName="nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="newclientes.email" placeholder="email" class="primary-input" formControlName="email"></ion-input>
+    </ion-item>
+
+ <ion-item>
+  <ion-input [(ngModel)]="newclientes.contrasena" placeholder="Contraseña" type="password" class="primary-input" formControlName="contrasena"></ion-input>
+  </ion-item>
+
+<ion-item>
+<ion-input [(ngModel)]="newclientes.confirmacioncontrasena" placeholder="Confirmar Contraseña" type="password" class="primary-input" formControlName="confirmacioncontrasena"></ion-input>
 </ion-item>
   </form>
+
   <p> Esta de acuerdo con los terminos y condiciones.</p>
 
   <div class="ion-margin-top">
