@@ -40,7 +40,7 @@ export class CartService {
    addProduct(product){
     let added = false;
     for (const p of this.cart){
-      if (p.id === product.id){
+      if (p.id === product.code){
         p.amount+=1;
         added = true;
         break;

@@ -32,12 +32,12 @@
     <ion-item *ngFor="let item of products">
       <ion-card>
       <ion-card-header>
-        <img [src]=item.imgURL height="200" width="500"/>
-      <ion-card-title><h1 class="ion-text-center">{{item.name}}</h1></ion-card-title>
+        <img [src]=item.ruta height="200" width="500"/>
+      <ion-card-title><h1 class="ion-text-center">{{item.nombre}}</h1></ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-label>
-        <h2 class="ion-text-center"><strong>{{item.price | currency: 'USD'}}</strong></h2>
+        <h2 class="ion-text-center"><strong>{{item.precio | currency: 'DOP'}}</strong></h2>
       </ion-label>
     </ion-card-content>
     <ion-item>

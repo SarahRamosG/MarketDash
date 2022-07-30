@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { CartService } from '../services/cart.service';
 import { CarritoPage } from '../carrito/carrito.page';
+import { BasedatosService } from '../services/basedatos.service';
 
 @Component({
   selector: 'app-escaner',
@@ -21,31 +22,13 @@ export class EscanerPage implements OnInit {
    cartItemCount: BehaviorSubject<number>;
    itemWasScaned = false;
 
-  constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController) {
+  constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController, private  dataservice: BasedatosService) {
     this.inicializar();
   }
 
   inicializar(){
-   this.products = [
-      {
-        name: 'Rexona',
-        description: `100`,
-        imgURL:'assets/rexona.png',
-        barcode :'75062798',
-        quantity: 12
-      },
-      {
-        name: 'VapoRub',
-        description: ` 150`,
-        imgURL:'assets/vaporub.jpg',
-        barcode: '7590002012468'
-      },
-      {
-        name: 'Salsa de Tostito',
-        description: `Precio : 200`,
-        imgURL:'assets/salsa.PNG'
-      }
-    ];
+    this.dataservice.getDocument("producto").subscribe(data=> this.products.push(...data));
+  
   }
 
 //carrito

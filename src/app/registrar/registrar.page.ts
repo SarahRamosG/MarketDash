@@ -19,45 +19,55 @@ import { BasedatosService } from '../services/basedatos.service';
 export class RegistrarPage implements OnInit {
 
   formularioRegistro: FormGroup;
-    newclientes : clientes ={
-    nombre:'',
-    email: '',
-    contrasena:'',
-    confirmarcontrasena:'',
-
-   };
-
-  /*constructor(
+  
+constructor(
     public database: BasedatosService,
     public modalCtrl:ModalController,public fb: FormBuilder,
     public alertController: AlertController , public ToastController: ToastController) { 
-    this.formularioRegistro = this.fb.group({
-     'nombre': new FormControl ("", Validators.required),
-      'contrasena': new FormControl ("", Validators.required),
-      'confirmacioncontrasena': new FormControl ("", Validators.required),
-      'email': new FormControl ("", Validators.required),
-
-        });
+   
 
 }
-*/
 
-constructor(public database: BasedatosService){}
 
   ngOnInit() {
+
+    this.formularioRegistro = this.fb.group({
+      nombre: ["",[Validators.required]],
+       contrasena: ["",[Validators.required]],
+       confirmacioncontrasena: ["",[Validators.required]] ,
+       email : ["",[Validators.required]] 
+         });
   }
 
-  guardar(){
+
+  get nombre(){
+    return this.formularioRegistro.get('nombre');
+  }
+
+  get contrasena(){
+    return this.formularioRegistro.get('contrasena');
+  }
+
+  get confirmarcontrasena(){
+    return this.formularioRegistro.get('confirmarcontrasena');
+  }
+
+  get email(){
+    return this.formularioRegistro.get('email');
+  }
+
+
+ async guardar(){
     //guardar informacion en la base de datos firebase
-    console.log('ESTO VAMOS A GUARDAR=>',this.newclientes);
-    const data = this.newclientes;
+    console.log('ESTO VAMOS A GUARDAR=>',this.formularioRegistro.value);
+    const data = this.formularioRegistro.value;
     //me crea la tabla clientes, pero no se si la suplica al ya estar creada
     const enlace = 'clientes';
-    this.database.crearDocument<clientes>(data,enlace);
-  }
+    this.database.crearDocument(data,enlace);
+ 
   //mensaje de que se ha registrado correctament
  
-  /*const toast = await  this.ToastController.create({
+  const toast = await this.ToastController.create({
     message: 'Se ha registrado correctamente.',
     duration: 2000
     
@@ -65,7 +75,7 @@ constructor(public database: BasedatosService){}
 
   toast.present();
   }
-
+}
 
 
 
@@ -134,4 +144,4 @@ constructor(public database: BasedatosService){}
 
 
 
-}
+

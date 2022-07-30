@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore,
 AngularFirestoreDocument,
 AngularFirestoreCollection} from '@angular/fire/compat/firestore';
+import { clientes } from '../models/interfaces';
 
 
 @Injectable({
@@ -13,11 +14,11 @@ export class BasedatosService {
   constructor( public FireStore: AngularFirestore) { }
 
   //ingresar informacion a la base de datos.
-  crearDocument <tipo>(data:tipo, enlace:string){
+  crearDocument(data : clientes,enlace:string){
     //apunta hacia una collecion (tabla)
-     const ref = this.FireStore.collection<tipo>(enlace);
+     const ref = this.FireStore.collection(enlace).add(data);
      //apunta hacia un doc (registro) que tenga el id que le enviaremos de argumento
-     return ref.add(data);
+ 
      
   }
 
@@ -29,7 +30,9 @@ export class BasedatosService {
 
   }
 
-  getDocument(){
+ getDocument(collecion:string){
+
+    return this.FireStore.collection(collecion).valueChanges();
 
   }
 
