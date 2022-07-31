@@ -23,17 +23,13 @@ export class EscanerPage implements OnInit {
    itemWasScaned = false;
 
   constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController, private  dataservice: BasedatosService) {
-    this.inicializar();
+
   }
 
-  inicializar(){
-    this.dataservice.getDocument("producto").subscribe(data=> this.products.push(...data));
-  
-  }
+ 
 
 //carrito
   ngOnInit() {
-    this.products = this.cartService.getProducts ();
     this.cart = this.cartService.getCart();
     this.cartItemCount = this.cartService.getCartItemCount ();
 
@@ -55,9 +51,10 @@ export class EscanerPage implements OnInit {
   }
 
   //SCANER
-     scan(){
-      this.barcodeScanner.scan().then(barcodeData =>{
-        this.products = this.products.filter(products => products.barcode == String(barcodeData.text));
+     async scan(){
+      this.barcodeScanner.scan().then(async barcodeData =>{
+      const response = await this.cartService.getProducts();
+      this.products = response.filter(products => products.code == String(barcodeData.text));
         //Operador ternario
         this.itemWasScaned = this.products.length ? true : false;
         console.log('Producto', this.products);

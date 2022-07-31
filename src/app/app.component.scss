@@ -126,6 +126,17 @@ ion-item.selected {
  align-items:center;
 }
 
-
+.menu-header-bg{
+  height: 200px;
+  width: 350px;
+  background:#1190CB; 
+  background: linear-gradient(90deg,#1190CB 0%,#51b1ff 100%);
+  box-shadow: 0px 1px 10px rgba(98,100,255,0.5);
+  transform: rotate(-15deg);
+  border-radius: 10px 20px 10px 50px;
+  margin-left:-18px;
+  margin-top: -60px;
+  margin-bottom: 60px;
+}
 
 

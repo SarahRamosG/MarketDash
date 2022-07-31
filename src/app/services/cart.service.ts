@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { producto } from '../models/interfaces';
 import { BasedatosService } from '../services/basedatos.service';
+import {map} from 'rxjs/operators';
 
 export interface Products{
   id: number;
@@ -18,19 +19,21 @@ export interface Products{
 })
 export class CartService {
    public superMarkets:any []= [];
-
-  data: Products[] = [
-    {id:1, name:'Rexona', price: 100, amount: 1, barcode: '75062798', imgURL:'assets/rexona.png'},
-
-  ];
-
   private cart = [];
   private cartItemCount = new BehaviorSubject (0);
+  private data = [];
 
+  constructor(private dataservice: BasedatosService) { }
 
-  constructor() { }
-
-    getProducts(){
+    async getProducts(){
+      this.dataservice.getDocument('producto')
+      .pipe(map((response) => response.map(product => {
+          const data = Object.assign(product, {initialValue: 1});
+          return data;
+        })))
+      .subscribe(productos => {
+        this.data = productos;
+      });
       return this.data;
     }
 
@@ -45,8 +48,8 @@ export class CartService {
    addProduct(product){
     let added = false;
     for (const p of this.cart){
-      if (p.id === product.code){
-        p.amount+=1;
+      if (p.code === product.code){
+        p.initialValue+=1;
         added = true;
         break;
       }
@@ -59,9 +62,9 @@ export class CartService {
 
    decreaseProduct(product){
    for (const[index, p] of this.cart.entries()){
-    if (p.id === product.id){
-       p.amount-=1;
-      if (p.amount === 0){
+    if (p.code === product.code){
+       p.initialValue-=1;
+      if (p.initialValue === 0){
       this.cart.splice(index, 1);
     }
   }
@@ -72,8 +75,8 @@ export class CartService {
 
    removeProduct(product){
     for (const [index, p] of this.cart.entries()){
-      if (p.id === product.id){
-        this.cartItemCount.next(this.cartItemCount.value - p.amount);
+      if (p.code === product.code){
+        this.cartItemCount.next(this.cartItemCount.value - p.initialValue);
         this.cart.splice(index, 1);
       }
     }

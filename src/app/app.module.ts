@@ -15,6 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,AngularFireAuthModule, IonicModule.forRoot(), AppRoutingModule,CarritoPageModule, 

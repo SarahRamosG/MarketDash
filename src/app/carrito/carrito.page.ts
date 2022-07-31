@@ -8,8 +8,7 @@ import { CartService, Products } from '../services/cart.service';
   styleUrls: ['./carrito.page.scss'],
 })
 export class CarritoPage implements OnInit {
-
-  cart: Products [] = [];
+  cart = [];
 
   constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
 
@@ -32,7 +31,7 @@ export class CarritoPage implements OnInit {
   }
 
   getTotal(){
-    return this.cart.reduce((i,j)=> i + j.price * j.amount, 0);
+    return this.cart.reduce((i,j)=> i + j.precio * j.initialValue, 0);
   }
 
   close(){

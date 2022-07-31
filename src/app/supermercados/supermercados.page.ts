@@ -18,20 +18,21 @@ export class SupermercadosPage implements OnInit {
 
 
   inicializar( ){
-    this.dataservice.getDocument("supermercados").subscribe(data=> this.superMarkets.push(...data));
+    this.dataservice.getDocument("supermercados").subscribe(data=> this.superMarkets = data);
    
   }
 
    //Metodo de buscar
    buscar(ev: any){
-
-    this.inicializar();
-
     const val = ev.target.value;
 
-   /*if (val && val.trim()!==''){
-     // this.superMarkets = this.superMarkets.filter ((item) => (item.name.toLowerCase().indexOf(val.toLowerCase())> - 1));
-    }*/
+   if (val && val.trim()!==''){
+     this.superMarkets = this.superMarkets.filter ((item) => (item.nombre.toLowerCase().indexOf(val.toLowerCase())> - 1));
+    }
+
+    if(val.trim()===''){
+      this.inicializar();
+    }
   }
 
   ngOnInit() {

@@ -8,6 +8,7 @@ import {
  } from '@angular/forms';
 import { clientes } from '../models/interfaces';
 import { BasedatosService } from '../services/basedatos.service';
+import {Camera, CameraResultType} from '@capacitor/camera';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ClientesPage implements OnInit {
 
   formularioRegistro:FormGroup;
   public clientes:any;
+  photo = 'https://i.pravatar.cc/150';
 
   constructor( public dataservice: BasedatosService,
     public modalCtrl:ModalController,public fb: FormBuilder,
@@ -32,6 +34,12 @@ export class ClientesPage implements OnInit {
    
      }
   ngOnInit() {
+    this.formularioRegistro = this.fb.group({
+      nombre: ["",[Validators.required]],
+       contrasena: ["",[Validators.required]],
+       email : ["",[Validators.required]],
+       tarjeta: ["",[Validators.required]],
+         });
 
   }
 
@@ -69,5 +77,25 @@ export class ClientesPage implements OnInit {
 
   toast.present();
   }
+
+  async openOptionSelection(){
+    /*const modal = await this.modalCtrl.create({
+     component:ProfilePhotoOptionComponent,
+     cssClass:'transparent-modal'
+    });
+
+    modal.onDidDismiss()
+    .then(res=> {
+      console.log(res);
+      if(res.role !=='backdrop'){
+
+      }
+      
+    });
+    return await modal.present();
+
+    
+  }*/
+}
 
 }

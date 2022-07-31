@@ -28,7 +28,7 @@
             </ion-col>
 
             <ion-col size="1" class = "ion-align-self-center">
-              {{p.amount}}
+              {{p.initialValue}}
             </ion-col>
 
             <ion-col size="2" class ="ion-align-self-center">
@@ -45,11 +45,11 @@
           </ion-row>
 
           <ion-row>
-         <ion-col size ="9">
-          <b>{{p.name}}</b>
+         <ion-col size ="7">
+          <b>{{p.nombre}}</b>
          </ion-col>
-         <ion-col size ="3" class=" ion-text-end">
-          {{p.amount * p.price | currency:'DOP'}}
+         <ion-col size ="5" class=" ion-text-end">
+          {{p.initialValue * p.precio | currency:'USD'}}
          </ion-col>
          </ion-row>
         </ion-grid>
@@ -58,11 +58,11 @@
       <ion-item>
         <ion-grid>
           <ion-row>
-            <ion-col size="9">
+            <ion-col size="7">
               Total:
             </ion-col> 
-            <ion-col size="3" class="ion-text-end">
-              {{getTotal() | currency:'DOP'}}
+            <ion-col size="5" class="ion-text-end">
+              {{getTotal() | currency:'USD'}}
             </ion-col> 
           </ion-row>
         </ion-grid>
