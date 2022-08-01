@@ -5,11 +5,11 @@ import {
   FormControl,
   Validators,
   FormBuilder
- } from '@angular/forms';
-import { clientes } from '../models/interfaces';
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { BasedatosService } from '../services/basedatos.service';
-import {Camera, CameraResultType} from '@capacitor/camera';
-
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-clientes',
@@ -18,84 +18,79 @@ import {Camera, CameraResultType} from '@capacitor/camera';
 })
 export class ClientesPage implements OnInit {
 
-  formularioRegistro:FormGroup;
-  public clientes:any;
+  formularioRegistro: FormGroup;
+  datosCliente: any;
+  unsafePhoto = '';
   photo = 'https://i.pravatar.cc/150';
 
-  constructor( public dataservice: BasedatosService,
-    public modalCtrl:ModalController,public fb: FormBuilder,
-    public alertController: AlertController , public ToastController: ToastController) {
-      this.inicializar();
-     }
-
-
-     inicializar(){
-      this.dataservice.getDocument("clientes").subscribe(data=> this.clientes.push(...data));
-   
-     }
-  ngOnInit() {
-    this.formularioRegistro = this.fb.group({
-      nombre: ["",[Validators.required]],
-       contrasena: ["",[Validators.required]],
-       email : ["",[Validators.required]],
-       tarjeta: ["",[Validators.required]],
-         });
-
+  constructor(public dataservice: BasedatosService,
+    public modalCtrl: ModalController,
+    public fb: FormBuilder,
+    public alertController: AlertController,
+    public ToastController: ToastController,
+    private router: Router,
+    private domSanitizer: DomSanitizer) {
   }
 
-  get nombre(){
+  ngOnInit() {
+    const cliente = localStorage.getItem("cliente");
+    if(cliente == null){
+      this.router.navigate(['./login']);
+    }
+
+    //mostrar document de clientes en la pantalla
+
+    this.formularioRegistro = this.fb.group({
+      nombre: ['', [Validators.required]],
+      contrasena: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      tarjeta: ['', [Validators.required]],
+    });
+  }
+
+  get nombre() {
     return this.formularioRegistro.get('nombre');
   }
 
-  get contrasena(){
+  get contrasena() {
     return this.formularioRegistro.get('contrasena');
   }
 
-  get email(){
+  get email() {
     return this.formularioRegistro.get('email');
   }
 
-  get tarjeta(){
+  get tarjeta() {
     return this.formularioRegistro.get('tarjeta');
   }
 
-  async guardar(){
+  async guardar() {
     //guardar informacion en la base de datos firebase
-    console.log('ESTO VAMOS A GUARDAR=>',this.formularioRegistro.value);
+    console.log('ESTO VAMOS A GUARDAR=>', this.formularioRegistro.value);
     const data = this.formularioRegistro.value;
+    data.photo = this.unsafePhoto;
     //me crea la tabla clientes, pero no se si la suplica al ya estar creada
-    const enlace = 'clientes';
-    this.dataservice.crearDocument(data,enlace);
- 
-  //mensaje de que se ha registrado correctament
- 
-  const toast = await this.ToastController.create({
-    message: 'Se ha registrado correctamente.',
-    duration: 2000
-    
-  });
+    this.dataservice.createClient(data);
 
-  toast.present();
+    //mensaje de que se ha registrado correctament
+
+    const toast = await this.ToastController.create({
+      message: 'Se ha registrado correctamente.',
+      duration: 2000
+
+    });
+
+    toast.present();
   }
 
-  async openOptionSelection(){
-    /*const modal = await this.modalCtrl.create({
-     component:ProfilePhotoOptionComponent,
-     cssClass:'transparent-modal'
+  async openOptionSelection() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
     });
-
-    modal.onDidDismiss()
-    .then(res=> {
-      console.log(res);
-      if(res.role !=='backdrop'){
-
-      }
-      
-    });
-    return await modal.present();
-
-    
-  }*/
-}
+    this.unsafePhoto = image.webPath;
+    this.photo = this.domSanitizer.bypassSecurityTrustUrl(image.webPath) as string;
+  }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagos',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagosPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    const cliente = localStorage.getItem("cliente");
+    if(cliente == null){
+      this.router.navigate(['./login']);
+    }
   }
 
 }

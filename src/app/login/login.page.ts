@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, ModalController,ToastController} from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import {
   FormGroup,
   FormControl,
   Validators,
   FormBuilder
- } from '@angular/forms';
+} from '@angular/forms';
 import { FolderPage } from '../folder/folder.page';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { clientes } from '../models/interfaces';
 import { BasedatosService } from '../services/basedatos.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -25,101 +25,102 @@ export class LoginPage implements OnInit {
   formularioLogin: FormGroup;
   emailBD = [];
   user = {
-    email:'',
-    password:'',
+    email: '',
+    password: '',
   }
 
 
   constructor(
-    public fb: FormBuilder, 
+    public fb: FormBuilder,
     public database: BasedatosService,
     public alertController: AlertController,
-    public modalCtrl:ModalController,
+    public modalCtrl: ModalController,
     public ToastController: ToastController,
     private FireStore: AngularFirestore,
-    private FireAuth:AngularFireAuth,
+    private FireAuth: AngularFireAuth,
     private router: Router,
     private loadingController: LoadingController
-  ) { 
-         this.formularioLogin = this.fb.group({
-          email: ["",[Validators.required]],
-          contrasena: ["",[Validators.required]],  
-             });
-  
+  ) {
+    this.formularioLogin = this.fb.group({
+      email: ["", [Validators.required]],
+      contrasena: ["", [Validators.required]],
+    });
+
   }
 
   ngOnInit() {
 
-    
+
   }
 
 
 
-  async ingresar(){
-    
+  async ingresar() {
+
     try {
       const loading = await this.loadingController.create({
         message: 'Loading...',
         duration: 3000,
         spinner: 'circles'
       });
-      
+
       await loading.present();
-      await  this.database.login(this.formularioLogin.value.email,this.formularioLogin.value.contrasena)
+      await this.database.login(this.formularioLogin.value.email, this.formularioLogin.value.contrasena)
+      localStorage.setItem("cliente", this.formularioLogin.value.email);
       loading.dismiss();
       this.router.navigate(['./supermercados']);
 
     } catch (error) {
       const alert = await this.alertController.create({
-        message:'Los datos que ingreso son incorrectos.',
-        buttons:['Aceptar']
+        message: 'Los datos que ingreso son incorrectos.',
+        buttons: ['Aceptar']
       });
       await alert.present();
       return;
     }
   }
-    
 
-    
-    /*var emailBD = this.database.getDocument('clientes');
-  
 
-    if (this.user.email ==  && this.user.password== emailBD.contrasena){
-      //dirigirse a la pantalla del menu
-      this.router.navigate(['./supermercados']);
 
-    }else{
-      const alert = await this.alertController.create({
-        message:'Los datos que ingreso son incorrectos.',
-        buttons:['Aceptar']
-      });
-      await alert.present();
-      return;
-      
-    }
-    */
-  
+  /*var emailBD = this.database.getDocument('clientes');
 
-    
-    
 
-    /*var f = this.formularioLogin.value;
-   
-    var usuario = JSON.parse(localStorage.getItem('usuario'));
+  if (this.user.email ==  && this.user.password== emailBD.contrasena){
+    //dirigirse a la pantalla del menu
+    this.router.navigate(['./supermercados']);
 
-    //compara que los datos de registrar sean los mismos que se ingresen en los campos de login
-    if (usuario.nombre == f.nombre && usuario.contrasena== f.contrasena){
-      //dirigirse a la pantalla del menu
-      this.router.navigate(['./supermercados']);
+  }else{
+    const alert = await this.alertController.create({
+      message:'Los datos que ingreso son incorrectos.',
+      buttons:['Aceptar']
+    });
+    await alert.present();
+    return;
 
-    }else{
-      const alert = await this.alertController.create({
-        message:'Los datos que ingreso son incorrectos.',
-        buttons:['Aceptar']
-      });
-      await alert.present();
-      return;
-    }
   }
   */
+
+
+
+
+
+  /*var f = this.formularioLogin.value;
+
+  var usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  //compara que los datos de registrar sean los mismos que se ingresen en los campos de login
+  if (usuario.nombre == f.nombre && usuario.contrasena== f.contrasena){
+    //dirigirse a la pantalla del menu
+    this.router.navigate(['./supermercados']);
+
+  }else{
+    const alert = await this.alertController.create({
+      message:'Los datos que ingreso son incorrectos.',
+      buttons:['Aceptar']
+    });
+    await alert.present();
+    return;
+  }
+}
+*/
 }

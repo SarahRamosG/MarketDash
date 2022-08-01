@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS } from '@angular/platform-browser';
 import { BasedatosService } from '../services/basedatos.service';
 
@@ -10,16 +11,16 @@ import { BasedatosService } from '../services/basedatos.service';
 export class SupermercadosPage implements OnInit {
   public superMarkets:any []= [];
   searchsupermarker: any;
-  
 
-  constructor(private  dataservice: BasedatosService) {
+
+  constructor(private  dataservice: BasedatosService, private router: Router) {
     this.inicializar();
   }
 
 
   inicializar( ){
     this.dataservice.getDocument("supermercados").subscribe(data=> this.superMarkets = data);
-   
+
   }
 
    //Metodo de buscar
@@ -36,8 +37,12 @@ export class SupermercadosPage implements OnInit {
   }
 
   ngOnInit() {
+    const cliente = localStorage.getItem("cliente");
+    if(cliente == null){
+      this.router.navigate(['./login']);
+    }
   }
 
 }
 
-   
+

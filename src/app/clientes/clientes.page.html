@@ -10,40 +10,49 @@
 
 
   <ion-content [fullscreen]="true" class = "ion-padding">
-    <div class="container">
-     <div class = "outer"
-     [ngStyle]="{'background-image': 'url(' + photo +')'}">
-     <div class="inner" (click)="openOptionSelection()">
+    <div class="inner ion-text-center" (click)="openOptionSelection()">
+      <ion-avatar>
+        <img class="image" [src]="photo" />
+      </ion-avatar>
       <ion-icon name="camera" class="camera-icon"></ion-icon>
+    </div>
+
+    <!-- <div class="container">
+      <ion-avatar>
+     <div id="clientPhoto" class = "outer"
+      [ngStyle]="{'background-image': 'url(' + photo +')'}">
+      <div class="inner" (click)="openOptionSelection()">
+      </ion-avatar>
+      <ion-icon name="camera" class="camera-icon" (click)="openCamera()"></ion-icon>
       <div class="ion-align-items-center">
         </div>
-        </div>
-       </div>
-       </div>
+        </div> -->
+       <!-- </div>
+       </div> -->
        <br>
        <br>
 
        <form [formGroup]="formularioRegistro">
 
         <ion-item>
-          <ion-input  placeholder="Nombre" type = "text" class="primary-input" formControlName="nombre" ></ion-input> 
+          <ion-input  placeholder="Nombre" type = "text" class="primary-input" formControlName="nombre" ></ion-input>
           </ion-item>
 
-    
+
             <ion-item>
               <ion-input  placeholder="Contraseña" type="password" class="primary-input" formControlName="contrasena"></ion-input>
               </ion-item>
-    
+
               <ion-item>
                 <ion-input  placeholder="Email"  class="primary-input" formControlName="email"></ion-input>
                 </ion-item>
-    
+
                 <ion-item>
                   <ion-input  placeholder="Tarjeta" type="number" class="primary-input" formControlName="tarjeta"></ion-input>
                   </ion-item>
         </form>
 
         <div class="ion-margin-top">
-          <ion-button expand="block" (click)="guardar()">Guardar</ion-button>
+          <ion-button expand="block" (click)="guardar()" [disabled]="!formularioRegistro.valid">Guardar</ion-button>
         </div>
 </ion-content>
