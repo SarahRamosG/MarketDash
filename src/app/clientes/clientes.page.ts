@@ -6,6 +6,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BasedatosService } from '../services/basedatos.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -18,7 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ClientesPage implements OnInit {
 
   formularioRegistro: FormGroup;
-  client: any;
+  datosCliente: any;
   unsafePhoto = '';
   photo = 'https://i.pravatar.cc/150';
 
@@ -27,20 +28,23 @@ export class ClientesPage implements OnInit {
     public fb: FormBuilder,
     public alertController: AlertController,
     public ToastController: ToastController,
+    private router: Router,
     private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
+    const cliente = localStorage.getItem("cliente");
+    if(cliente == null){
+      this.router.navigate(['./login']);
+    }
+
     //mostrar document de clientes en la pantalla
-    // this.dataservice
-    // .getClient(this.enlace)
-    // .subscribe(result => this.clients = result);
 
     this.formularioRegistro = this.fb.group({
-      nombre: ["", [Validators.required]],
-      contrasena: ["", [Validators.required]],
-      email: ["", [Validators.required]],
-      tarjeta: ["", [Validators.required]],
+      nombre: ['', [Validators.required]],
+      contrasena: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      tarjeta: ['', [Validators.required]],
     });
   }
 
@@ -66,7 +70,7 @@ export class ClientesPage implements OnInit {
     const data = this.formularioRegistro.value;
     data.photo = this.unsafePhoto;
     //me crea la tabla clientes, pero no se si la suplica al ya estar creada
-    this.dataservice.editClient(data);
+    this.dataservice.createClient(data);
 
     //mensaje de que se ha registrado correctament
 

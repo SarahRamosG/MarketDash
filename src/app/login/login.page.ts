@@ -6,11 +6,14 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { FolderPage } from '../folder/folder.page';
 import { Router } from '@angular/router';
+import { clientes } from '../models/interfaces';
 import { BasedatosService } from '../services/basedatos.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable, of, from, throwError } from "rxjs";
+
+
 
 @Component({
   selector: 'app-login',
@@ -26,12 +29,15 @@ export class LoginPage implements OnInit {
     password: '',
   }
 
+
   constructor(
     public fb: FormBuilder,
     public database: BasedatosService,
     public alertController: AlertController,
     public modalCtrl: ModalController,
     public ToastController: ToastController,
+    private FireStore: AngularFirestore,
+    private FireAuth: AngularFireAuth,
     private router: Router,
     private loadingController: LoadingController
   ) {
@@ -47,29 +53,34 @@ export class LoginPage implements OnInit {
 
   }
 
-  async ingresar() {
-    const loading = await this.loadingController.create({
-      message: 'Loading...',
-      duration: 3000,
-      spinner: 'circles'
-    });
 
-    await loading.present();
-    //await this.database.login(this.formularioLogin.value.email, this.formularioLogin.value.contrasena)
-    const result = this.database.authenticateClient(this.formularioLogin.value.email, this.formularioLogin.value.contrasena);
-    console.log(result);
-    if(result){
+
+  async ingresar() {
+
+    try {
+      const loading = await this.loadingController.create({
+        message: 'Loading...',
+        duration: 3000,
+        spinner: 'circles'
+      });
+
+      await loading.present();
+      await this.database.login(this.formularioLogin.value.email, this.formularioLogin.value.contrasena)
+      localStorage.setItem("cliente", this.formularioLogin.value.email);
       loading.dismiss();
       this.router.navigate(['./supermercados']);
-    }else{
-      localStorage.setItem("client", this.formularioLogin.value.email);
+
+    } catch (error) {
       const alert = await this.alertController.create({
         message: 'Los datos que ingreso son incorrectos.',
         buttons: ['Aceptar']
       });
       await alert.present();
+      return;
     }
   }
+
+
 
   /*var emailBD = this.database.getDocument('clientes');
 

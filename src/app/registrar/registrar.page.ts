@@ -6,6 +6,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BasedatosService } from '../services/basedatos.service';
 
 @Component({
@@ -19,10 +20,11 @@ export class RegistrarPage implements OnInit {
 
   constructor(
     public database: BasedatosService,
-    public modalCtrl: ModalController, public fb: FormBuilder,
-    public alertController: AlertController, public ToastController: ToastController) {
-
-
+    public modalCtrl: ModalController,
+    public fb: FormBuilder,
+    private router: Router,
+    public alertController: AlertController,
+    public ToastController: ToastController) {
   }
 
 
@@ -70,6 +72,8 @@ export class RegistrarPage implements OnInit {
     });
 
     toast.present();
+
+    this.router.navigate(['./login']);
   }
 }
 
@@ -134,10 +138,3 @@ toast.present();
 }
 
 */
-
-
-
-
-
-
-

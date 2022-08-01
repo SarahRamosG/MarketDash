@@ -13,6 +13,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class BasedatosService {
   clients: any;
+  clientList: [];
 
   constructor(public FireStore: AngularFirestore,
     private FireAuth: AngularFireAuth)
@@ -31,25 +32,20 @@ export class BasedatosService {
     return this.FireStore.collection(collecion).valueChanges();
   }
 
-  authenticateClient(email: string, contrasena: string) {
-    const client = this.clients.doc(email).valueChanges();
-    return client.contrasena == contrasena;
-  }
-
-  getClient(email: string) {
-    return this.clients.doc(email).valueChanges();
+  getClient(client: any) {
+    return this.clients.doc(client.email)?.get();
   }
 
   createClient(client: any) {
-    return this.clients.doc(client.email).add(client);
+    return this.clients.add(client);
   }
 
   editClient(client: any) {
-    return this.clients.doc(client.email).update(client);
+    return this.clients.doc(client.email)?.update(client);
   }
 
   deleteClient(client: any) {
-    return this.clients.doc(client.email).delete();
+    return this.clients.doc(client.email)?.delete();
   }
 
   //Nos genera un ID aleatorio desde la BD
@@ -58,7 +54,11 @@ export class BasedatosService {
   }
 
   login(email: string, password: string) {
-    return this.FireAuth.signInWithEmailAndPassword(email, password);
+    try {
+      this.FireAuth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      this.clients.valueChanges().subscribe(res => (res.email == email && res.password == password));
+    }
   }
 }
 
