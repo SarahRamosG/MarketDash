@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { producto } from '../models/interfaces';
 import { BasedatosService } from '../services/basedatos.service';
 import {map} from 'rxjs/operators';
+import { IProducts } from './../interfaces/products.interface';
 
 export interface Products{
   id: number;
@@ -25,16 +26,13 @@ export class CartService {
 
   constructor(private dataservice: BasedatosService) { }
 
-    async getProducts(){
-      this.dataservice.getDocument('producto')
-      .pipe(map((response) => response.map(product => {
-          const data = Object.assign(product, {initialValue: 1});
+     getProducts(){
+      return this.dataservice.getDocument('producto')
+      .pipe(map((response) => response.map((product: IProducts) => {
+          const data: IProducts = Object.assign(product, {initialValue: 1});
           return data;
         })))
-      .subscribe(productos => {
-        this.data = productos;
-      });
-      return this.data;
+   
     }
 
     getCart(){

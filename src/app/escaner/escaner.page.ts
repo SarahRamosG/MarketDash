@@ -21,6 +21,7 @@ export class EscanerPage implements OnInit {
    products = [];
    cartItemCount: BehaviorSubject<number>;
    itemWasScaned = false;
+   
 
   constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController, private  dataservice: BasedatosService) {
 
@@ -51,18 +52,21 @@ export class EscanerPage implements OnInit {
   }
 
   //SCANER
-     async scan(){
-      this.barcodeScanner.scan().then(async barcodeData =>{
-      const response = await this.cartService.getProducts();
-      this.products = response.filter(products => products.code == String(barcodeData.text));
+      scan(){
+    //  this.barcodeScanner.scan().then(async barcodeData =>{
+      const response =  this.cartService.getProducts();
+       response .subscribe(productos => {
+        this.products =  productos.filter(products => String(products.code) == '4005808829675' ) });; 
+
         //Operador ternario
         this.itemWasScaned = this.products.length ? true : false;
         console.log('Producto', this.products);
-      }).catch(err=>{
+    /*  }).catch(err=>{
         console.log('Error',err);
-      });
+      });*/
 
       }
+     
 
       }
 

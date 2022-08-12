@@ -9,6 +9,7 @@ import { CartService, Products } from '../services/cart.service';
 })
 export class CarritoPage implements OnInit {
   cart = [];
+  isModalOpen = false;
 
   constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
 
@@ -41,5 +42,7 @@ export class CarritoPage implements OnInit {
   checkout(){
 
   }
-
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
 }

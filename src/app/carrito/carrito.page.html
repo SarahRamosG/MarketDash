@@ -1,11 +1,3 @@
-<!--<ion-header>
-  <ion-toolbar>
-   <center> <ion-title><strong>Carro de compras</strong></ion-title></center>
-    <ion-buttons slot="start"> 
-    </ion-buttons>
-  </ion-toolbar>
-  
-</ion-header>-->
 
 <ion-content fullscreen>
 
@@ -68,10 +60,58 @@
         </ion-grid>
       </ion-item>
     </ion-list>
-
-    <ion-button expand="full" (click)=" checkout()">
-     Realizar pedido
-    </ion-button>
   </div>
 
+  <ion-content class="ion-padding">
+    <ion-button expand="block" (click)="setOpen(true)">Realizar compra</ion-button>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <div class="ion-align-items-center">
+            <ion-title>Factura</ion-title>
+            </div>
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpen(false)"><ion-icon name="arrow-back-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+        
+          <!--Fecha-->
+         
+
+          <ion-list>
+           <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
+            <ion-grid>
+              <ion-row>
+
+                <ion-col size ="4">
+                 <b>{{p.nombre}}</b>
+                </ion-col>
+                
+             
+                <ion-col size ="3">
+                  {{p.initialValue}}
+                 </ion-col>
+
+              
+                <ion-col size ="3" class=" ion-text-end">
+                 {{p.initialValue * p.precio | currency:'USD'}}
+                </ion-col>
+
+              
+                </ion-row>
+               
+               </ion-grid>
+             </ion-item>
+             </ion-list>
+             <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
+             <img src="assets/pagar.png" height="250" width="300"/>
+             </div>
+        </ion-content>
+        <ion-button  slot="end" href="escaner">Pagar</ion-button>
+      </ng-template>
+    </ion-modal>
 </ion-content>
