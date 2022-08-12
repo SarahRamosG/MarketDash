@@ -92,5 +92,4 @@ export class ClientesPage implements OnInit {
     this.unsafePhoto = image.webPath;
     this.photo = this.domSanitizer.bypassSecurityTrustUrl(image.webPath) as string;
   }
-
 }
