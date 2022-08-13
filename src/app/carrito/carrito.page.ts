@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CartService, Products } from '../services/cart.service';
+import { Pipe, PipeTransform} from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-carrito',
@@ -10,12 +12,17 @@ import { CartService, Products } from '../services/cart.service';
 export class CarritoPage implements OnInit {
   cart = [];
   isModalOpen = false;
+  date : Date = new Date ();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
+
 
   constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
 
     this.cart = this.cartServices.getCart();
+    this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
   }
 
   decreaseCartItem(product){

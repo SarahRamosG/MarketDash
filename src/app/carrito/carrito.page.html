@@ -79,10 +79,15 @@
         </ion-header>
         <ion-content class="ion-padding">
         
-          <!--Fecha-->
-         
+        
 
           <ion-list>
+            <!--Fecha-->
+           <div>
+             {{todayWithPipe}}
+           </div>
+           <br>
+              
            <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
             <ion-grid>
               <ion-row>
@@ -106,6 +111,20 @@
                
                </ion-grid>
              </ion-item>
+
+             <ion-item>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="7">
+                    Total:
+                  </ion-col> 
+                  <ion-col size="3" class="ion-text-end">
+                    {{getTotal() | currency:'USD'}}
+                  </ion-col> 
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+
              </ion-list>
              <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
              <img src="assets/pagar.png" height="250" width="300"/>
