@@ -29,10 +29,13 @@
     "@capacitor/status-bar": "1.0.8",
     "@ionic-native/barcode-scanner": "^5.36.0",
     "@ionic/angular": "^6.1.9",
+    "@stripe/stripe-js": "^1.35.0",
     "animate.css": "^4.1.1",
     "firebase": "^9.9.1",
     "phonegap-plugin-barcodescanner": "^8.1.0",
+    "react-native-stripe-payment-intents": "^2.0.3",
     "rxjs": "~6.6.0",
+    "stripe": "^10.2.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

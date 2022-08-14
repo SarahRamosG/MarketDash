@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><strong>Tarjeta</strong></ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu = "main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <div class = "payment-box">
+      <br>
+      <ionic-item>
+        <div id="card"></div>
+      </ionic-item>
+        
+      
+         <br>
+      <div class = "button">
+          <ion-button id = "button" (click)="payment()">Pagar</ion-button></div>
+      
+      <div id="card-errors" role ="alert"></div>
+    </div>
+
+  
+
+</ion-content>

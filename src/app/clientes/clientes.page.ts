@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BasedatosService } from '../services/basedatos.service';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
+import {StripeComponent} from '../stripe/stripe.component';
 
 @Component({
   selector: 'app-clientes',

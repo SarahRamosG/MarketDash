@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { CartService, Products } from '../services/cart.service';
 import { Pipe, PipeTransform} from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',

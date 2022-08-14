@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {StripeComponent} from './stripe/stripe.component';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -51,9 +52,14 @@ const routes: Routes = [
   {
     path: 'bienvenido',
     loadChildren: () => import('./bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)
-  },  {
+  },
+  {
     path: 'factura',
     loadChildren: () => import('./factura/factura.module').then( m => m.FacturaPageModule)
+  },
+  {
+    path: 'stripe', component: StripeComponent
+   
   }
 
   
