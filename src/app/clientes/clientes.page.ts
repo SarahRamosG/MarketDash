@@ -23,6 +23,7 @@ export class ClientesPage implements OnInit {
   datosCliente: any;
   unsafePhoto = '';
   photo = 'https://i.pravatar.cc/150';
+  clientdata = [];
 
   constructor(public dataservice: BasedatosService,
     public modalCtrl: ModalController,
@@ -34,10 +35,14 @@ export class ClientesPage implements OnInit {
   }
 
   ngOnInit() {
-    const cliente = localStorage.getItem("cliente");
+   /*const cliente = localStorage.getItem("cliente");
     if(cliente == null){
-      this.router.navigate(['./login']);
-    }
+      this.router.navigate(['./login']);*/
+     
+     const data =  this.dataservice.getDocument('clientes');
+     data.subscribe(datanew => console.log(datanew));
+
+    
 
     //mostrar document de clientes en la pantalla
 

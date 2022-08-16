@@ -9,7 +9,7 @@
 
 <ion-content>
   
-    <div class = "payment-box">
+    <!--<div class = "payment-box">
       <br>
       <ionic-item>
         <div id="card"></div>
@@ -21,8 +21,27 @@
           <ion-button id = "button" (click)="payment()">Pagar</ion-button></div>
       
       <div id="card-errors" role ="alert"></div>
-    </div>
+    </div>-->
 
-  
+    <form id= "payment-form">
+      <div id = "payment-element">
+        <div class = "payment-box">
+          <br>
+          <ionic-item>
+            <div id="card"></div>
+          </ionic-item>
+            
+          
+             <br>
+          <div class = "button">
+              <ion-button id = "button" (click)="payment()">Pagar</ion-button></div>
+          
+          <div id="card-errors" role ="alert"></div>
+        </div>
+      
+      </div>
+
+    </form>
+      
 
 </ion-content>

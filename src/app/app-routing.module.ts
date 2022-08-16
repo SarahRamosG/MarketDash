@@ -54,13 +54,13 @@ const routes: Routes = [
     loadChildren: () => import('./bienvenido/bienvenido.module').then( m => m.BienvenidoPageModule)
   },
   {
-    path: 'factura',
-    loadChildren: () => import('./factura/factura.module').then( m => m.FacturaPageModule)
-  },
-  {
     path: 'stripe', component: StripeComponent
    
+  },  {
+    path: 'factura',
+    loadChildren: () => import('./factura/factura.module').then( m => m.FacturaPageModule)
   }
+
 
   
 ];

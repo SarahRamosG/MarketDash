@@ -1,9 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit,ElementRef, ViewChild} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CartService, Products } from '../services/cart.service';
 import { Pipe, PipeTransform} from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+//import {pdfMake} from 'pdfmake/build/pdfmake';
+//import {pdfFonts} from 'pdfmake/build/vfs_fonts';
+//pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+
+declare var require: any;
+const htmlToPdfmake = require("html-to-pdfmake");
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-carrito',
@@ -16,9 +27,13 @@ export class CarritoPage implements OnInit {
   date : Date = new Date ();
   pipe = new DatePipe('en-US');
   todayWithPipe = null;
+ 
 
 
   constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
+
+  @ViewChild('pdfTable')
+  pdfTable!: ElementRef;
 
   ngOnInit() {
 
@@ -47,10 +62,36 @@ export class CarritoPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  checkout(){
 
-  }
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
+
+  createPdf(){
+    
+   /*const pdfDefinition: any = {
+      content:[
+        {
+          text:'Hola'
+          
+          }
+        ]
+        
+    }
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.open();*/
+  
+  }
+
+ 
+  
+  public downloadAsPDF() {
+    const pdfTable = this.pdfTable.nativeElement;
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    //pdfMake.createPdf(documentDefinition).download(); 
+     const pdf = pdfMake.createPdf(documentDefinition);
+      pdf.open();
+
+}
 }

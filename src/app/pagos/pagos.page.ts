@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Pipe, PipeTransform} from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -10,22 +12,27 @@ import { Router } from '@angular/router';
 })
 export class PagosPage implements OnInit {
   isModalOpen = false;
-
+  date : Date = new Date ();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    const cliente = localStorage.getItem("cliente");
-    if(cliente == null){
-      this.router.navigate(['./login']);
+
+      this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
     }
-  }
+  
+
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
-
-
-
 }
+
+
+
+
+
+
 
 

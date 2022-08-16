@@ -80,15 +80,21 @@
         <ion-content class="ion-padding">
         
         
-
+          <div class="container">
+            <div id="pdfTable" #pdfTable>
           <ion-list>
+            <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
+           <img src="assets/Market.png" height="100" width="150"/>
+              </div>
             <!--Fecha-->
            <div>
+            <br>
              {{todayWithPipe}}
            </div>
            <br>
               
            <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
+            <br>
             <ion-grid>
               <ion-row>
 
@@ -126,10 +132,11 @@
             </ion-item>
 
              </ion-list>
-             <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
-             <img src="assets/pagar.png" height="250" width="300"/>
              </div>
+             </div>
+            
         </ion-content>
+        <ion-button (click)="downloadAsPDF()"> Descargar PDF</ion-button>
         <ion-button  slot="end" href="stripe">Continuar</ion-button>
       </ng-template>
     </ion-modal>

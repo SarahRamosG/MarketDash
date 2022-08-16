@@ -1,27 +1,45 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar>
-    <ion-title>Inline Modal</ion-title>
+    <ion-title>Factura de compra</ion-title>
+
+    <h1></h1>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
-  <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Modal</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Close</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-          dicta.
-        </p>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-</ion-content>
+
+<ion-content>
+
+</ion-content>-->
+
+<div class="container">
+  <div id="pdfTable" #pdfTable>
+    <h2>Angular HTML To PDF Using PDFMAKE and htm-to-pdfmake Example - readerstacks.com</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.no.</th>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Rem</td>
+          <td>Rem@yopmail.com</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Joe</td>
+          <td>joe@yopmail.com</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Kuple</td>
+          <td>Kuple@yopmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-primary" (click)="downloadAsPDF();">Export To PDF</button>
+</div>

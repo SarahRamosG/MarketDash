@@ -54,7 +54,7 @@ export class StripeComponent implements OnInit {
           owner: {name : 'codexmaker'},
           //el dice que un peso es igual a 100 centavos por eso lo multiplica por 100
           
-          amount:1000*100,
+          amount:2000*100,
           
            
           //su documentacion pide que sea en minuscula
