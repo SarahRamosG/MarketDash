@@ -27,7 +27,7 @@ export class CarritoPage implements OnInit {
   date : Date = new Date ();
   pipe = new DatePipe('en-US');
   todayWithPipe = null;
- 
+  factura = [];
 
 
   constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
@@ -38,11 +38,13 @@ export class CarritoPage implements OnInit {
   ngOnInit() {
 
     this.cart = this.cartServices.getCart();
+    this.factura = this.cart = this.cartServices.getCart();
     this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
   }
 
   decreaseCartItem(product){
     this.cartServices.decreaseProduct(product);
+    
   }
 
   increaseCartItem(product){

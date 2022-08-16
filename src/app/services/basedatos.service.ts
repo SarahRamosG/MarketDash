@@ -41,7 +41,7 @@ export class BasedatosService {
   }
 
   editClient(client: any) {
-    return this.clients.doc(client.email)?.update(client);
+    return this.clients.doc('17PSOy4NIvXndVD21lc5')?.update(client);
   }
 
   deleteClient(client: any) {

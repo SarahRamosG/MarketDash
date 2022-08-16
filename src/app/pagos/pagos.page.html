@@ -10,52 +10,60 @@
 </ion-header>
 
 
-<!--<ion-content>
-  <div class="card">
-    <ion-list>
-    <ion-item>
-      <ion-card>
-      <ion-card-header>
-        <img [src]=item.ruta height="200" width="500"/>
-  
-      <ion-card-title><h1 class="ion-text-center">Factura </h1></ion-card-title>
-    </ion-card-header>
-    <div>
-      <br>
-       {{todayWithPipe}}
-     </div>
-     <br>
-    <ion-card-content class ="ion-padding ion-text-center">
+ <ion-content>
+  <div class="container">
+    <div id="pdfTable" #pdfTable>
+  <ion-list>
+    <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
+      </div>
+    <!--Fecha-->
+   <div>
+    <br>
+     {{todayWithPipe}}
+   </div>
+   <br>
+      
+   <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
+    <br>
+    <ion-grid>
       <ion-row>
-        <ion-col size ="7">
+
+        <ion-col size ="4">
          <b>{{p.nombre}}</b>
         </ion-col>
-        <ion-col size ="5" class=" ion-text-end">
+        
+     
+        <ion-col size ="3">
+          {{p.initialValue}}
+         </ion-col>
+
+      
+        <ion-col size ="3" class=" ion-text-end">
          {{p.initialValue * p.precio | currency:'USD'}}
         </ion-col>
+
+      
         </ion-row>
+       
        </ion-grid>
      </ion-item>
 
      <ion-item>
-       <ion-grid>
-         <ion-row>
-           <ion-col size="7">
-             Total:
-           </ion-col> 
-           <ion-col size="5" class="ion-text-end">
-             {{getTotal() | currency:'USD'}}
-           </ion-col> 
-         </ion-row>
-       </ion-grid>
-     </ion-item>
-   </ion-list>
- </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7">
+            Total:
+          </ion-col> 
+         <!-- <ion-col size="3" class="ion-text-end">
+            {{getTotal() | currency:'USD'}}
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+    </ion-item>
 
-    </ion-card-content>
-      </ion-card>
-   
-  </ion-item>
-  </ion-list>
-</ion-content>-->
+     </ion-list>
+     </div>
+     </div>
+
+</ion-content>
 

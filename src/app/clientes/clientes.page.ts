@@ -23,7 +23,8 @@ export class ClientesPage implements OnInit {
   datosCliente: any;
   unsafePhoto = '';
   photo = 'https://i.pravatar.cc/150';
-  clientdata = [];
+  clientData: any = {};
+
 
   constructor(public dataservice: BasedatosService,
     public modalCtrl: ModalController,
@@ -31,16 +32,23 @@ export class ClientesPage implements OnInit {
     public alertController: AlertController,
     public ToastController: ToastController,
     private router: Router,
-    private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer
+
+    ) {
   }
 
   ngOnInit() {
-   /*const cliente = localStorage.getItem("cliente");
-    if(cliente == null){
-      this.router.navigate(['./login']);*/
+  
+      this.dataservice.getDocument('clientes').subscribe(clientData => {
+        this.clientData = clientData[0];
+        this.formularioRegistro.setValue({
+          nombre: this.clientData.nombre,
+          contrasena: this.clientData.contrasena,
+          email: this.clientData.email,
+          tarjeta: this.clientData.tarjeta
+        });
+      });
      
-     const data =  this.dataservice.getDocument('clientes');
-     data.subscribe(datanew => console.log(datanew));
 
     
 
@@ -76,12 +84,12 @@ export class ClientesPage implements OnInit {
     const data = this.formularioRegistro.value;
     data.photo = this.unsafePhoto;
     //me crea la tabla clientes, pero no se si la suplica al ya estar creada
-    this.dataservice.createClient(data);
+    this.dataservice.editClient(data);
 
     //mensaje de que se ha registrado correctament
 
     const toast = await this.ToastController.create({
-      message: 'Se ha registrado correctamente.',
+      message: 'Se ha actualizado correctamente.',
       duration: 2000
 
     });

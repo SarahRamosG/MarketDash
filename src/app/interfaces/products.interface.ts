@@ -5,3 +5,14 @@ export interface IProducts {
     precio: number;
     ruta: string;
   }
+
+  export interface IFactura{
+
+    fecha?: Date;
+    initialValue?: number;
+    nombre: string;
+    precio: number;
+    total : number;
+    
+    
+  }
