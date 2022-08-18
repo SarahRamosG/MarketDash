@@ -13,7 +13,7 @@ export class StripeComponent implements OnInit {
 
   private stripe : Stripe;
   private mensaje = "";
-   cart = [];
+  // cart = [];
    carrito : CarritoPage;
    private monto : number;
 
@@ -78,9 +78,6 @@ export class StripeComponent implements OnInit {
       
   }
   async payment (){
-
-
-    
     const alert = await this.alertController.create({
       message: "Gracias por realizar su compra por MarketDash",
       buttons: ['Aceptar']

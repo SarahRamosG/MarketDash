@@ -11,19 +11,16 @@
 
 
  <ion-content>
-  <div class="container">
-    <div id="pdfTable" #pdfTable>
+ <div id="pdfTable" #pdfTable>
   <ion-list>
     <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
       </div>
-    <!--Fecha-->
-   <div>
-    <br>
-     {{todayWithPipe}}
-   </div>
-   <br>
-      
-   <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
+   <ion-card>
+    <div class="ion-align-items-rigth"  style="display: flex; flex-flow: column nowrap;">
+      <br>
+       {{todayWithPipe}}
+     </div>
+   <ion-item *ngFor=" let p of factura1" class="ion-text-wrap">
     <br>
     <ion-grid>
       <ion-row>
@@ -54,15 +51,14 @@
           <ion-col size="7">
             Total:
           </ion-col> 
-         <!-- <ion-col size="3" class="ion-text-end">
+          <ion-col size="3" class="ion-text-end">
             {{getTotal() | currency:'USD'}}
-          </ion-col> -->
+          </ion-col> 
         </ion-row>
       </ion-grid>
     </ion-item>
-
+  </ion-card>
      </ion-list>
-     </div>
      </div>
 
 </ion-content>

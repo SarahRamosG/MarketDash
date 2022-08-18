@@ -4,8 +4,9 @@ import {
   AngularFirestoreDocument,
   AngularFirestoreCollection
 } from '@angular/fire/compat/firestore';
-import { clientes } from '../models/interfaces';
+import { clientes, factura } from '../models/interfaces';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { FacturaPage } from '../factura/factura.page';
 
 
 @Injectable({
@@ -14,18 +15,24 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class BasedatosService {
   clients: any;
   clientList: [];
+  factura: any;
 
   constructor(public FireStore: AngularFirestore,
     private FireAuth: AngularFireAuth)
    {
     this.clients = this.FireStore.collection("clientes");
+    this.factura = this.FireStore.collection("factura");
    }
 
   //ingresar informacion a la base de datos.
-  crearDocument(data: clientes, enlace: string) {
+  crearDocument(data: any, enlace: string) {
     //apunta hacia una collecion (tabla)
     const ref = this.FireStore.collection(enlace).add(data);
     //apunta hacia un doc (registro) que tenga el id que le enviaremos de argumento
+  }
+
+  crearfactura(data: factura, enlace:string){
+
   }
 
   getDocument(collecion: string) {
@@ -53,12 +60,8 @@ export class BasedatosService {
     return this.FireStore.createId();
   }
 
-  login(email: string, password: string) {
-    try {
-      this.FireAuth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      this.clients.valueChanges().subscribe(res => (res.email == email && res.password == password));
-    }
+  async login(email: string, password: string) {
+    return this.FireAuth.signInWithEmailAndPassword(email,password);
   }
 }
 

@@ -37,10 +37,7 @@ export class SupermercadosPage implements OnInit {
   }
 
   ngOnInit() {
-    const cliente = localStorage.getItem("cliente");
-    if(cliente == null){
-      this.router.navigate(['./login']);
-    }
+   
   }
 
 }

@@ -20,7 +20,7 @@
   
   
      <div class="ion-margin-top">
-      <ion-button expand="block" (click)="ingresar()">Iniciar sesión</ion-button>
+      <ion-button expand="block" (click)="ingresar()"  [disabled]="!formularioLogin.valid">Iniciar sesión</ion-button>
      </div>
    
      <div class="ion-margin-top ion-text-center">

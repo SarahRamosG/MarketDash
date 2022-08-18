@@ -61,7 +61,7 @@ export class RegistrarPage implements OnInit {
     console.log('ESTO VAMOS A GUARDAR=>', this.formularioRegistro.value);
     const data = this.formularioRegistro.value;
     //me crea la tabla clientes, pero no se si la suplica al ya estar creada
-    this.database.createClient(data);
+    this.database.crearDocument(data,'clientes');
 
     //mensaje de que se ha registrado correctament
 

@@ -74,9 +74,7 @@ export class ClientesPage implements OnInit {
     return this.formularioRegistro.get('email');
   }
 
-  get tarjeta() {
-    return this.formularioRegistro.get('tarjeta');
-  }
+ 
 
   async guardar() {
     //guardar informacion en la base de datos firebase

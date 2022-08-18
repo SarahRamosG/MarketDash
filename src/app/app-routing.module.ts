@@ -56,7 +56,8 @@ const routes: Routes = [
   {
     path: 'stripe', component: StripeComponent
    
-  },  {
+  },
+  {
     path: 'factura',
     loadChildren: () => import('./factura/factura.module').then( m => m.FacturaPageModule)
   }

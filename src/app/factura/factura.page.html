@@ -10,36 +10,42 @@
 
 </ion-content>-->
 
-<div class="container">
-  <div id="pdfTable" #pdfTable>
-    <h2>Angular HTML To PDF Using PDFMAKE and htm-to-pdfmake Example - readerstacks.com</h2>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>S.no.</th>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Rem</td>
-          <td>Rem@yopmail.com</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Joe</td>
-          <td>joe@yopmail.com</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Kuple</td>
-          <td>Kuple@yopmail.com</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <button class="btn btn-primary" (click)="downloadAsPDF();">Export To PDF</button>
-</div>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Ionic Template</title>
+
+    <link href="http://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="https://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+ </head>
+
+ <div id="pdfTable" #pdfTable>
+  <body ng-controller="MyCtrl as ctrl">
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">Factura de compra</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row header">
+          <div class="col">Productos</div>
+          <div class="col">Cantidad</div>
+          <div class="col">Precio</div>
+          <div class="col"></div>
+        </div>
+        <div class="row"  *ngFor=" let p of cart" class="ion-text-wrap">
+          <div class="col">{{p.nombre}}</div>
+          <div class="col"> {{p.initialValue}}</div>
+          <div class="col">{{p.initialValue * p.precio | currency:'USD'}}</div>
+        </div>
+
+        <button class="btn btn-primary" (click)="downloadAsPDF();">Export To PDF</button>
+    </ion-content>
+   
+  </body>
+
+
+
+
+

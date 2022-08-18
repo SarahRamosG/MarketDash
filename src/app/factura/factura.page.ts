@@ -3,7 +3,9 @@ import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { CarritoPage } from '../carrito/carrito.page';
 import {htmlToPdfmake} from 'html-to-pdfmake';
-
+import { AppStoreService} from '../services/app-store.service';
+import { Pipe, PipeTransform} from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 declare var require: any;
 const htmlToPdfmake = require("html-to-pdfmake");
@@ -16,13 +18,21 @@ const htmlToPdfmake = require("html-to-pdfmake");
   styleUrls: ['./factura.page.scss'],
 })
 export class FacturaPage implements OnInit {
+  cart = [];
+  isModalOpen = false;
+  date : Date = new Date ();
+  pipe = new DatePipe('en-US');
+  todayWithPipe = null;
+  total : number;
 
-  constructor() { privateCarritoPage : CarritoPage}
+
+  constructor( private factura : AppStoreService) {}
 
   ngOnInit() {
-    // tratar de llamar lo que se presenta en la factura para ponerlo en el html y mostrarlo en el pdf
+   
 
-    //this.CarritoPage = this.cartServices.getCart();
+    this.cart = this.factura.carrito;
+    this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
 
   }
 
@@ -36,5 +46,30 @@ export class FacturaPage implements OnInit {
     pdfMake.createPdf(documentDefinition).download(); 
 
 
+
 }
+setOpen(isOpen: boolean) {
+  this.isModalOpen = isOpen;
+}
+
+getTotal(){
+  return this.cart.reduce((i,j)=> i + j.precio * j.initialValue, 0);
+}
+
+createPdf(){
+    
+  /*const pdfDefinition: any = {
+     content:[
+       {
+         text:'Hola'
+         
+         }
+       ]
+       
+   }
+   const pdf = pdfMake.createPdf(pdfDefinition);
+   pdf.open();*/
+ 
+ }
+
 }

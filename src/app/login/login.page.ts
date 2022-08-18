@@ -57,28 +57,35 @@ export class LoginPage implements OnInit {
 
   async ingresar() {
 
-    try {
-      const loading = await this.loadingController.create({
-        message: 'Loading...',
-        duration: 3000,
-        spinner: 'circles'
-      });
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+      duration: 3000,
+      spinner: 'circles'
+    });
 
-      await loading.present();
-      await this.database.login(this.formularioLogin.value.email, this.formularioLogin.value.contrasena)
-      localStorage.setItem("cliente", this.formularioLogin.value.email);
-      loading.dismiss();
+    await loading.present();
+    this.database
+    .login(this.formularioLogin.value.email, this.formularioLogin.value.contrasena)
+    .then(async ()=>{
+      localStorage.setItem('cliente', this.formularioLogin.value.email);
+      await loading.dismiss();
       this.router.navigate(['./supermercados']);
 
-    } catch (error) {
+    })
+    .catch(async () => {
+      await loading.dismiss();
       const alert = await this.alertController.create({
         message: 'Los datos que ingreso son incorrectos.',
         buttons: ['Aceptar']
       });
       await alert.present();
       return;
-    }
-  }
+    });
+
+}
+
+
+    
 
 
 

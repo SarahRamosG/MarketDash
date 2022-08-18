@@ -70,6 +70,7 @@
           <ion-toolbar>
             <div class="ion-align-items-center">
             <ion-title>Factura</ion-title>
+          
             </div>
             <ion-buttons slot="start">
               <ion-button (click)="setOpen(false)"><ion-icon name="arrow-back-outline"></ion-icon>
@@ -80,64 +81,66 @@
         <ion-content class="ion-padding">
         
         
-          <div class="container">
-            <div id="pdfTable" #pdfTable>
-          <ion-list>
+    
             <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
-           <img src="assets/Market.png" height="100" width="150"/>
-              </div>
-            <!--Fecha-->
-           <div>
-            <br>
-             {{todayWithPipe}}
-           </div>
-           <br>
-              
-           <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
-            <br>
-            <ion-grid>
-              <ion-row>
-
-                <ion-col size ="4">
-                 <b>{{p.nombre}}</b>
-                </ion-col>
+              <img src="./assets/Market.png" height="100" width="150"/>
+                 </div>
+                 <div id="pdfTable" #pdfTable>
+                  <ion-list>
+                    <div class="ion-align-items-center" style="display: flex; flex-flow: column nowrap;">
+                      </div>
+                    <!--Fecha-->
+                    <div class="ion-align-items-rigth"  style="display: flex; flex-flow: column nowrap;">
+                    <br>
+                     {{todayWithPipe}}
+                   </div>
+                   <br>
+                      
+                   <ion-item *ngFor=" let p of cart" class="ion-text-wrap">
+                    <br>
+                    <ion-grid>
+                      <ion-row>
                 
-             
-                <ion-col size ="3">
-                  {{p.initialValue}}
-                 </ion-col>
-
-              
-                <ion-col size ="3" class=" ion-text-end">
-                 {{p.initialValue * p.precio | currency:'USD'}}
-                </ion-col>
-
-              
-                </ion-row>
-               
-               </ion-grid>
-             </ion-item>
-
-             <ion-item>
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="7">
-                    Total:
-                  </ion-col> 
-                  <ion-col size="3" class="ion-text-end">
-                    {{getTotal() | currency:'USD'}}
-                  </ion-col> 
-                </ion-row>
-              </ion-grid>
-            </ion-item>
-
-             </ion-list>
-             </div>
-             </div>
-            
+                        <ion-col size ="4">
+                         <b>{{p.nombre}}</b>
+                        </ion-col>
+                        
+                     
+                        <ion-col size ="3">
+                          {{p.initialValue}}
+                         </ion-col>
+                
+                      
+                        <ion-col size ="3" class=" ion-text-end">
+                         {{p.initialValue * p.precio | currency:'USD'}}
+                        </ion-col>
+                
+                      
+                        </ion-row>
+                       
+                       </ion-grid>
+                     </ion-item>
+                
+                     <ion-item>
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size="7">
+                            Total:
+                          </ion-col> 
+                          <ion-col size="3" class="ion-text-end">
+                            {{getTotal() | currency:'USD'}}
+                          </ion-col> 
+                        </ion-row>
+                      </ion-grid>
+                    </ion-item>
+                     </ion-list>
+                  
+                     </div>
+                    
+                   
         </ion-content>
-        <ion-button (click)="downloadAsPDF()"> Descargar PDF</ion-button>
-        <ion-button  slot="end" href="stripe">Continuar</ion-button>
+        <!--<ion-button (click)="downloadAsPDF()"> Descargar Factura</ion-button>-->
+        <ion-button (click)= "guardarfactura()" slot="end" herf="stripe" >Continuar</ion-button>
       </ng-template>
     </ion-modal>
 </ion-content>

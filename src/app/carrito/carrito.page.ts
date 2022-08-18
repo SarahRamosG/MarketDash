@@ -1,14 +1,25 @@
-import {  Component, OnInit,ElementRef, ViewChild} from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {  Component, OnInit,ElementRef, ViewChild, Input} from '@angular/core';
 import { CartService, Products } from '../services/cart.service';
+import { AppStoreService} from '../services/app-store.service';
 import { Pipe, PipeTransform} from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { BasedatosService } from '../services/basedatos.service';
+import { Routes, RouterModule, Router } from '@angular/router';
 //import {pdfMake} from 'pdfmake/build/pdfmake';
 //import {pdfFonts} from 'pdfmake/build/vfs_fonts';
 //pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import {loadStripe, Stripe} from "@stripe/stripe-js";
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
+
+
 
 declare var require: any;
 const htmlToPdfmake = require("html-to-pdfmake");
@@ -27,24 +38,33 @@ export class CarritoPage implements OnInit {
   date : Date = new Date ();
   pipe = new DatePipe('en-US');
   todayWithPipe = null;
-  factura = [];
+  private stripe : Stripe;
+  private mensaje = "";
+  carrito : CarritoPage;
+  private monto : number;
 
 
-  constructor(private cartServices: CartService, private modalCtrl: ModalController) { }
+
+
+
+  constructor(private cartServices: CartService, private modalCtrl: ModalController, private factura : AppStoreService, public ToastController: ToastController, public alertController: AlertController,
+    public database: BasedatosService, private router: Router) { }
 
   @ViewChild('pdfTable')
   pdfTable!: ElementRef;
 
-  ngOnInit() {
+  async ngOnInit() {
 
+  
     this.cart = this.cartServices.getCart();
-    this.factura = this.cart = this.cartServices.getCart();
+    this.factura.setcarrito(this.cart);
     this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
+
   }
 
   decreaseCartItem(product){
     this.cartServices.decreaseProduct(product);
-    
+
   }
 
   increaseCartItem(product){
@@ -69,31 +89,15 @@ export class CarritoPage implements OnInit {
     this.isModalOpen = isOpen;
   }
 
-  createPdf(){
-    
-   /*const pdfDefinition: any = {
-      content:[
-        {
-          text:'Hola'
-          
-          }
-        ]
-        
-    }
-    const pdf = pdfMake.createPdf(pdfDefinition);
-    pdf.open();*/
-  
+
+async guardarfactura(){
+
+ console.log('ESTO VAMOS A GUARDAR=>', this.cart);
+  //me crea la tabla clientes, pero no se si la suplica al ya estar creada
+  for await (const data of this.cart) {
+    this.database.crearDocument(data,'factura');
   }
 
- 
-  
-  public downloadAsPDF() {
-    const pdfTable = this.pdfTable.nativeElement;
-    var html = htmlToPdfmake(pdfTable.innerHTML);
-    const documentDefinition = { content: html };
-    //pdfMake.createPdf(documentDefinition).download(); 
-     const pdf = pdfMake.createPdf(documentDefinition);
-      pdf.open();
 
 }
 }
