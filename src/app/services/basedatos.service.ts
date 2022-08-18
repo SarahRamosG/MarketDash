@@ -33,6 +33,8 @@ export class BasedatosService {
 
   crearfactura(data: factura, enlace:string){
 
+    const ref = this.FireStore.collection(enlace).add(data);
+
   }
 
   getDocument(collecion: string) {
