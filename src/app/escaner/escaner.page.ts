@@ -21,6 +21,7 @@ export class EscanerPage implements OnInit {
    products = [];
    cartItemCount: BehaviorSubject<number>;
    itemWasScaned = false;
+
    
 
   constructor(private barcodeScanner: BarcodeScanner, private cartService: CartService, private modaCtrl: ModalController, private  dataservice: BasedatosService) {

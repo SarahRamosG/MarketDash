@@ -96,6 +96,7 @@ async guardarfactura(){
   //me crea la tabla clientes, pero no se si la suplica al ya estar creada
   for await (const data of this.cart) {
     this.database.crearDocument(data,'factura');
+    
   }
 
 

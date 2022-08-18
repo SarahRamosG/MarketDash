@@ -3,6 +3,10 @@ import {loadStripe, Stripe} from "@stripe/stripe-js";
 import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { CartService, Products } from '../services/cart.service';
 import { CarritoPage } from '../carrito/carrito.page';
+import { BasedatosService } from '../services/basedatos.service';
+import { AppStoreService} from '../services/app-store.service';
+import { TouchSequence } from 'selenium-webdriver';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-stripe',
@@ -16,17 +20,28 @@ export class StripeComponent implements OnInit {
   // cart = [];
    carrito : CarritoPage;
    private monto : number;
+   cart = [];
+   public factura1:any []= [];
 
   
-
-  constructor( public alertController: AlertController,  public ToastController: ToastController, private cartServices: CartService) { }
+  constructor( 
+     public alertController: AlertController,  
+     public ToastController: ToastController, 
+     private cartServices: CartService,  
+     private  dataservice: BasedatosService,
+     private factura : AppStoreService,
+     private router: Router) {
+    
+      }
 
  
   //Vamos a pasar la llame publica y cuando hagamos eso esperaremos una respuesta
   async ngOnInit() {
 
-   
+    this.inicializar();
+
     //this.monto  = parseInt(this.carrito.getTotal());
+    this.monto = this.getTotal();
     this.stripe = await loadStripe('pk_test_51LWPFkAlAGmCEgYAhmZCFDNt2eCT8bEnoXCmogrMGTH4w8iYaXrqtxeFvpFtycziovqqSPgHDxI69yhkQBLB5VBg00dcOoVaQd');
    
     const elements = this.stripe.elements();
@@ -38,13 +53,13 @@ export class StripeComponent implements OnInit {
       const displayError = document.getElementById('card-errors');
       this.mensaje= event.error ? displayError.textContent = event.error.message: displayError.textContent = '';  
       
-      const toast = await this.ToastController.create({
+     /*const toast = await this.ToastController.create({
         message: this.mensaje,
         duration: 2000
   
       });
   
-      toast.present();
+      toast.present();*/
       });
       
       const button = document.getElementById('button');
@@ -53,10 +68,7 @@ export class StripeComponent implements OnInit {
         const ownerInfo = {
           owner: {name : 'codexmaker'},
           //el dice que un peso es igual a 100 centavos por eso lo multiplica por 100
-          
-          amount:2000*100,
-          
-           
+          amount : 3000,
           //su documentacion pide que sea en minuscula
           currency: 'dop',
         };
@@ -83,9 +95,19 @@ export class StripeComponent implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+    this.router.navigate(['/supermercados']); 
     return;
+  
   }
-   
-    
+
+
+  getTotal(){
+    return this.cart.reduce((i,j)=> i + j.precio * j.initialValue, 0);
+  }
+
+  inicializar( ){
+    this.dataservice.getDocument("factura").subscribe(data=> this.factura1 = data);
+
+  }
   }
 

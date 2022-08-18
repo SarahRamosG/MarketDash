@@ -44,8 +44,7 @@ export class ClientesPage implements OnInit {
         this.formularioRegistro.setValue({
           nombre: this.clientData.nombre,
           contrasena: this.clientData.contrasena,
-          email: this.clientData.email,
-          tarjeta: this.clientData.tarjeta
+          email: this.clientData.email
         });
       });
      
@@ -58,7 +57,7 @@ export class ClientesPage implements OnInit {
       nombre: ['', [Validators.required]],
       contrasena: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      tarjeta: ['', [Validators.required]],
+      //tarjeta: ['', [Validators.required]],
     });
   }
 
