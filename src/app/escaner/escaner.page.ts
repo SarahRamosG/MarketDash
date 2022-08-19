@@ -54,17 +54,17 @@ export class EscanerPage implements OnInit {
 
   //SCANER
       scan(){
-    //  this.barcodeScanner.scan().then(async barcodeData =>{
+     this.barcodeScanner.scan().then(async barcodeData =>{
       const response =  this.cartService.getProducts();
        response .subscribe(productos => {
-        this.products =  productos.filter(products => String(products.code) == '4005808829675' ) });; 
+        this.products =  productos.filter(products => String(products.code) == barcodeData.text) });; 
 
         //Operador ternario
         this.itemWasScaned = this.products.length ? true : false;
         console.log('Producto', this.products);
-    /*  }).catch(err=>{
+     }).catch(err=>{
         console.log('Error',err);
-      });*/
+      });
 
       }
      
